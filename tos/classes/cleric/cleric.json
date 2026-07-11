@@ -1,0 +1,354 @@
+{
+  "class_name": "Cleric",
+  "class_id": 4001,
+  "tree": "cleric",
+  "skills": [
+    {
+      "id": 40001,
+      "name": "Heal",
+      "description": "Restores the HP of a designated party member. The amount of HP restored depends on the caster's healing values.",
+      "type": "buff",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 1.0,
+      "SP": 250,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "2": [
+          47,
+          150,
+          253,
+          356,
+          459,
+          562,
+          665,
+          768,
+          871,
+          974,
+          1077,
+          1180,
+          1283,
+          1386,
+          1489
+        ],
+        "3": [
+          53,
+          85,
+          118,
+          150,
+          182,
+          214,
+          246,
+          279,
+          311,
+          343,
+          375,
+          407,
+          440,
+          472,
+          504
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Heal Factor: CaptionRatio2 %\nCorrupted Sphere Skill Factor CaptionRatio3 %\n[Heal: Overload] increases SP consumption by +50% per stack"
+    },
+    {
+      "id": 40002,
+      "name": "Cure",
+      "description": "Removes all removable debuffs affecting the designated party member. Increases SP consumption when Cure is used continuously",
+      "type": "buff",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 10.0,
+      "SP": 165,
+      "hits": null,
+      "stance": "All",
+      "property": "Holy",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90,
+          100,
+          110,
+          120,
+          130,
+          140
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Chance to remove debuff:  CaptionRatio %\nIncrease SP consumption by 50% per each [Cure: Overload] stack\n[Cure: Overload] Duration: 5 seconds"
+    },
+    {
+      "id": 40006,
+      "name": "Fade",
+      "description": "Erases the threat of monsters making them stop any attacks on you.",
+      "type": "buff",
+      "max_lv": 1,
+      "OH": 0,
+      "CD": 30.0,
+      "SP": 180,
+      "hits": null,
+      "stance": "All",
+      "property": "Holy",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": null,
+      "captiontime": {
+        "0": [
+          18,
+          20,
+          22,
+          24,
+          26,
+          28,
+          30,
+          32,
+          34,
+          36,
+          38
+        ]
+      },
+      "def_ignore": null,
+      "effect_text": "Duration: CaptionTime seconds"
+    },
+    {
+      "id": 40007,
+      "name": "Guardian Saint",
+      "description": "Increases the caster's Healing ability.",
+      "type": "buff",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 60.0,
+      "SP": 225,
+      "hits": null,
+      "stance": "All",
+      "property": "Holy",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          0,
+          5,
+          10,
+          15,
+          20,
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Guardian Saint Duration: 30 minutes\nHealing: + CaptionRatio %"
+    },
+    {
+      "id": 40008,
+      "name": "Smite",
+      "description": "Strongly smackdown enemy. Deals 50% additional damage to Mutant and Devil-type enemies.",
+      "type": "attack",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 1.0,
+      "SP": 13,
+      "hits": 1,
+      "stance": "All",
+      "property": "None",
+      "sfr": [
+        600,
+        960,
+        1321,
+        1681,
+        2042,
+        2402,
+        2763,
+        3123,
+        3484,
+        3844,
+        4205,
+        4565,
+        4926,
+        5286,
+        5647
+      ],
+      "skillsr": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "captionratio": null,
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Skill Factor: SkillFactor %\nAoE Attack Ratio: SkillSR"
+    }
+  ],
+  "attributes": [
+    {
+      "id": 401001,
+      "name": "Cure: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the chance for [Cure] to remove additional debuffs by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 401004,
+      "name": "Heal: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the heal factor of [Heal] by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 401009,
+      "name": "Cleric: Healing",
+      "max_lv": 5,
+      "category": "modifier",
+      "description": "* Increases Healing by 2% per attribute level"
+    },
+    {
+      "id": 401021,
+      "name": "Heal: Linger",
+      "max_lv": 10,
+      "category": "modifier",
+      "description": "* Applies a buff that continuously restores the HP of allies healed with Heal (except Corrupted Sphere) or Mass Heal\n\n* The buff lasts for 10 seconds and restores HP in a value equal to [attribute level x 5]% of your Healing stat\n\n* Increases SP consumption by 30%"
+    },
+    {
+      "id": 401022,
+      "name": "Guardian Saint: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases [Guardian Saint]'s healing increasing effects by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 401023,
+      "name": "Property Change: Physical",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Cleric class' stat growth rate and attack skill property changes.\n\n* Property of Cleric class attack skill is changed to [Physical] - [Strike].\n\n* INT -> STR, SPR -> DEX"
+    },
+    {
+      "id": 401024,
+      "name": "[Arts] Cloth Mastery: Healing",
+      "max_lv": 1,
+      "category": "arts_behavior",
+      "description": "* Healing increases by 5% when equipping 4 Cloth-type armor\n\n* (Basic ATK is the character's ATK without any buff effects applied to it. The highest value between Physical and Magic attack is applied.)"
+    },
+    {
+      "id": 401025,
+      "name": "[Arts] Heal: Enhanced Upgrade",
+      "max_lv": 30,
+      "category": "arts_upgrade",
+      "description": "* Increases the Skill Factor of [Heal] by 1.25% per attribute level"
+    },
+    {
+      "id": 401026,
+      "name": "[Arts] Smite: Enhanced Upgrade",
+      "max_lv": 30,
+      "category": "arts_upgrade",
+      "description": "* Increases the Skill Factor of [Smite] by 1.25% per attribute level"
+    },
+    {
+      "id": 401027,
+      "name": "Fade: Shift",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Instead of the original [Fade], you become invincible for 0.5 seconds. Also, damage received by enemies decrease by 15% for 12 seconds and amount of heal received increase by 15%.\n\n*Apply to yourself only"
+    },
+    {
+      "id": 401028,
+      "name": "Guardian Saint: Faith",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Removes increase Healing effect of [Guardian Saint] and decreases Healing of character by 80%, but increases skill final damage by 10% for 30 minutes"
+    },
+    {
+      "id": 401029,
+      "name": "Heal: Remove Targeting",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Instantly applies Heal to yourself only when using [Heal].\n\n*[Heal: Treat Urgent Target] attribute and group attribute."
+    },
+    {
+      "id": 401030,
+      "name": "Heal: Treat Urgent Target",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "Heal applies to the target with low HP, Heal rate applies by 50% of the existing recovery amount."
+    },
+    {
+      "id": 401031,
+      "name": "Heal: Corrupted Sphere",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Loses power to heal and give non-property magic damage at a maximum of 10 targets(object included) at the front straight line. Additionally applies continuous damage to the damaged enemy for 5 seconds.\n\nAttack : (Healing * 7) + (Magic Attack * 0.3) (Attack increases by 150% when the target is 3 or less)\n\nAreas other than Town: Attribute ON/OFF cooldown: 1 minute(Attribute does not activate in PvP areas)"
+    },
+    {
+      "id": 401032,
+      "name": "Heal: Corrupted Sphere Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the skill factor of [Heal: Corrupted Sphere] by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 401033,
+      "name": "[Arts] Heal: Corrupted Sphere Enhanced Upgrade",
+      "max_lv": 30,
+      "category": "arts_upgrade",
+      "description": "* Increases the Skill Factor of [Heal: Corrupted Sphere] by 1.25% per attribute level"
+    },
+    {
+      "id": 401035,
+      "name": "Property Change: Magic",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Cleric class' stat growth rate and attack skill property changes.\n\n* Property of Cleric class attack skill is changed to [Magic] - [Holy].\n\n* STR -> INT, DEX -> SPR"
+    },
+    {
+      "id": 401036,
+      "name": "Property Change: Magic Enhance",
+      "max_lv": 1,
+      "category": "enhance",
+      "description": "* Cleric's SPR increases Magic Attack instead of Magic Critical Attack.\n\n* Cleric's INT increases Magic Critical Attack instead of Magic Attack."
+    },
+    {
+      "id": 407002,
+      "name": "Smite: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the skill factor of [Smite] by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    }
+  ]
+}
