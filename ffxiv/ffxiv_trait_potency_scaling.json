@@ -1,0 +1,131 @@
+{
+  "system": "ffxiv_trait_potency_scaling",
+  "game": "Final Fantasy XIV",
+  "patch": "7.5",
+  "purpose": "Maps pre-Lv94 (base) potencies vs post-Lv94 (mastery trait) potencies for level-scaled modeling",
+  "source_priority": [
+    "1. Official job guide (na.finalfantasyxiv.com/jobguide/) = current patch potencies (Lv100, post-all-traits)",
+    "2. consolegameswiki.com/wiki/ Notes sections = pre-trait potencies (verified against patch notes)",
+    "3. Patch notes (lodestone) = historical changes, delta confirmation"
+  ],
+  "global_traits": {
+    "Increased Action Damage (Lv50)": "+10% base action damage (multiplicative)",
+    "Increased Action Damage II (Lv60)": "+20% base action damage (replaces Lv50 trait)",
+    "note": "These affect ALL damage actions. Pre-50: x1.0, 50-59: x1.1, 60+: x1.2. Baked into damage formula, not tooltips."
+  },
+  "jobs": {
+    "dancer": {
+      "mastery_trait": "Dynamic Dancer",
+      "trait_level": 94,
+      "skills": {
+        "Cascade": {
+          "pre_94": 200,
+          "post_94": 220,
+          "delta": "+20 (+10%)"
+        },
+        "Fountain": {
+          "pre_94": 100,
+          "post_94": 120,
+          "delta": "+20 (+20%)"
+        },
+        "Reverse Cascade": {
+          "pre_94": 260,
+          "post_94": 280,
+          "delta": "+20 (+7.7%)"
+        },
+        "Fountainfall": {
+          "pre_94": 320,
+          "post_94": 340,
+          "delta": "+20 (+6.3%)"
+        },
+        "Fan Dance": {
+          "pre_94": 150,
+          "post_94": 180,
+          "delta": "+30 (+20%)"
+        },
+        "Fan Dance III": {
+          "pre_94": 200,
+          "post_94": 220,
+          "delta": "+20 (+10%)"
+        },
+        "Fan Dance IV": {
+          "pre_94": 300,
+          "post_94": 460,
+          "delta": "+160 (+53%)"
+        },
+        "Saber Dance": {
+          "pre_94": 500,
+          "post_94": 540,
+          "delta": "+40 (+8%)"
+        },
+        "Standard Finish (2-step)": {
+          "pre_94": 800,
+          "post_94": 850,
+          "delta": "+50 (+6.3%)"
+        },
+        "Technical Finish (4-step)": {
+          "pre_94": 1200,
+          "post_94": 1300,
+          "delta": "+100 (+8.3%)"
+        }
+      },
+      "notes": [
+        "Wiki states Dynamic Dancer sets Saber Dance to 520 and Fan Dance IV to 420",
+        "Official job guide (7.5) shows Saber Dance at 540 and Fan Dance IV at 460",
+        "Discrepancy likely from Patch 7.1 hotfix potency adjustments post-launch",
+        "AUTHORITATIVE: Official site values (540, 460) are current patch truth",
+        "Pre-94 values from wiki Notes sections are correct (500, 300 respectively)"
+      ]
+    },
+    "bard": {
+      "mastery_trait": "Ranged Mastery",
+      "trait_level": 94,
+      "skills": {
+        "Burst Shot": {
+          "pre_94": 200,
+          "post_94": 220,
+          "delta": "+20 (+10%)"
+        },
+        "Refulgent Arrow": {
+          "pre_94": 260,
+          "post_94": 280,
+          "delta": "+20 (+7.7%)"
+        },
+        "Empyreal Arrow": {
+          "pre_94": 240,
+          "post_94": 260,
+          "delta": "+20 (+8.3%)"
+        },
+        "Sidewinder": {
+          "pre_94": 320,
+          "post_94": 400,
+          "delta": "+80 (+25%)"
+        },
+        "Apex Arrow (range)": {
+          "pre_94": "120-500",
+          "post_94": "140-700",
+          "delta": "+20 base, +200 max (+40% at cap)"
+        }
+      },
+      "notes": [
+        "Apex Arrow scales linearly with Soul Voice gauge above minimum cost (20)",
+        "At 80+ gauge pre-94: ~430p. At 80+ gauge post-94: ~600p",
+        "Sidewinder gets the largest single boost (+25%) among BRD skills"
+      ]
+    }
+  },
+  "methodology": {
+    "current_potency_source": "na.finalfantasyxiv.com/jobguide/ (authoritative, current patch)",
+    "pre_trait_potency_source": "ffxiv.consolegameswiki.com/wiki/{Skill_Name} → Notes section",
+    "verification": "Cross-referenced with Patch 7.0 history entries on each wiki page",
+    "discrepancy_resolution": "When wiki trait text conflicts with official site tooltip, official site wins (may reflect post-launch hotfixes)"
+  },
+  "remaining_jobs_needed": [
+    "All melee DPS have 'Melee Mastery' at Lv94 (DRG, MNK, NIN, SAM, RPR, VPR)",
+    "All tanks have equivalent trait (PLD, WAR, DRK, GNB)",
+    "All casters have 'Magic Mastery' equivalent (BLM, SMN, RDM, PCT)",
+    "MCH has 'Marksman's Mastery' at Lv94",
+    "Healers have role-specific potency traits",
+    "Same pattern: wiki Notes section has pre-trait values"
+  ]
+}
