@@ -1,0 +1,517 @@
+[
+  {
+    "job_id": "1001",
+    "class_name": "Swordsman",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1002",
+    "class_name": "Highlander",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1003",
+    "class_name": "Peltasta",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1004",
+    "class_name": "Hoplite",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1005",
+    "class_name": "Centurion",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1006",
+    "class_name": "Barbarian",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1007",
+    "class_name": "Cataphract",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1009",
+    "class_name": "Doppelsoeldner",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1010",
+    "class_name": "Rodelero",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1012",
+    "class_name": "Murmillo",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1014",
+    "class_name": "Fencer",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1015",
+    "class_name": "Dragoon",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1016",
+    "class_name": "Templar",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1017",
+    "class_name": "Lancer",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1018",
+    "class_name": "Matador",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1019",
+    "class_name": "Nak Muay",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1020",
+    "class_name": "Retiarius",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1021",
+    "class_name": "Hackapell",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1022",
+    "class_name": "Blossom Blader",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1023",
+    "class_name": "Luchador",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1024",
+    "class_name": "Shenji",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "1025",
+    "class_name": "Winged Hussar",
+    "tree": "swordsman"
+  },
+  {
+    "job_id": "2001",
+    "class_name": "Wizard",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2002",
+    "class_name": "Pyromancer",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2003",
+    "class_name": "Cryomancer",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2004",
+    "class_name": "Psychokino",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2005",
+    "class_name": "Alchemist",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2006",
+    "class_name": "Sorcerer",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2008",
+    "class_name": "Chronomancer",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2009",
+    "class_name": "Necromancer",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2011",
+    "class_name": "Elementalist",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2012",
+    "class_name": "Mimic",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2014",
+    "class_name": "Sage",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2015",
+    "class_name": "Warlock",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2016",
+    "class_name": "Featherfoot",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2017",
+    "class_name": "Rune Caster",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2019",
+    "class_name": "Shadowmancer",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2020",
+    "class_name": "Onmyoji",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2021",
+    "class_name": "Taoist",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2022",
+    "class_name": "Bokor",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2023",
+    "class_name": "Terramancer",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2024",
+    "class_name": "Keraunos",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "2025",
+    "class_name": "Illusionist",
+    "tree": "wizard"
+  },
+  {
+    "job_id": "3001",
+    "class_name": "Archer",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3002",
+    "class_name": "Hunter",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3003",
+    "class_name": "Quarrel Shooter",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3004",
+    "class_name": "Ranger",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3005",
+    "class_name": "Sapper",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3006",
+    "class_name": "Wugushi",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3011",
+    "class_name": "Fletcher",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3012",
+    "class_name": "Pied Piper",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3013",
+    "class_name": "Appraiser",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3014",
+    "class_name": "Falconer",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3015",
+    "class_name": "Cannoneer",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3016",
+    "class_name": "Musketeer",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3017",
+    "class_name": "Mergen",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3101",
+    "class_name": "Matross",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3102",
+    "class_name": "Tiger Hunter",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3103",
+    "class_name": "Arbalester",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3104",
+    "class_name": "Arquebusier",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3105",
+    "class_name": "Hwarang",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3106",
+    "class_name": "Engineer",
+    "tree": "archer"
+  },
+  {
+    "job_id": "3107",
+    "class_name": "Godeye",
+    "tree": "archer"
+  },
+  {
+    "job_id": "4001",
+    "class_name": "Cleric",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4002",
+    "class_name": "Priest",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4003",
+    "class_name": "Krivis",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4005",
+    "class_name": "Druid",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4006",
+    "class_name": "Sadhu",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4007",
+    "class_name": "Dievdirbys",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4008",
+    "class_name": "Oracle",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4009",
+    "class_name": "Monk",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4010",
+    "class_name": "Pardoner",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4011",
+    "class_name": "Paladin",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4012",
+    "class_name": "Chaplain",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4013",
+    "class_name": "Shepherd",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4014",
+    "class_name": "Plague Doctor",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4015",
+    "class_name": "Kabbalist",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4016",
+    "class_name": "Inquisitor",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4018",
+    "class_name": "Miko",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4019",
+    "class_name": "Zealot",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4020",
+    "class_name": "Exorcist",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4021",
+    "class_name": "Crusader",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4022",
+    "class_name": "Lama",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "4023",
+    "class_name": "Pontifex",
+    "tree": "cleric"
+  },
+  {
+    "job_id": "5001",
+    "class_name": "Scout",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5002",
+    "class_name": "Assassin",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5003",
+    "class_name": "Outlaw",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5004",
+    "class_name": "Squire",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5005",
+    "class_name": "Corsair",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5006",
+    "class_name": "Shinobi",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5007",
+    "class_name": "Thaumaturge",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5008",
+    "class_name": "Enchanter",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5009",
+    "class_name": "Linker",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5010",
+    "class_name": "Rogue",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5011",
+    "class_name": "Schwarzer Reiter",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5012",
+    "class_name": "Bullet Marker",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5013",
+    "class_name": "Ardito",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5014",
+    "class_name": "Sheriff",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5015",
+    "class_name": "Rangda",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5016",
+    "class_name": "Clown",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5017",
+    "class_name": "Hakkapeliter",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5018",
+    "class_name": "Jaguar",
+    "tree": "scout"
+  },
+  {
+    "job_id": "5019",
+    "class_name": "Desperado",
+    "tree": "scout"
+  }
+]

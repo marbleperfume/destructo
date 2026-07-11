@@ -1,0 +1,772 @@
+{
+  "source": "https://itos.gihyeonofsoul.com",
+  "scraped_date": "2026-07-11",
+  "total_classes": 103,
+  "total_skills": 685,
+  "total_attributes": 1588,
+  "data_breakdown": {
+    "attack_skills": 411,
+    "buff_skills": 274,
+    "skills_with_sfr_arrays": 411,
+    "skills_with_captionratio": 218,
+    "skills_with_descriptions": 685
+  },
+  "trees": {
+    "swordsman": {
+      "class_count": 22,
+      "total_skills": 153,
+      "total_attributes": 350,
+      "classes": [
+        {
+          "class_name": "Barbarian",
+          "class_id": 1006,
+          "skill_count": 6,
+          "attribute_count": 12,
+          "file": "swordsman/Barbarian.json"
+        },
+        {
+          "class_name": "Blossom Blader",
+          "class_id": 1022,
+          "skill_count": 6,
+          "attribute_count": 13,
+          "file": "swordsman/Blossom_Blader.json"
+        },
+        {
+          "class_name": "Cataphract",
+          "class_id": 1007,
+          "skill_count": 7,
+          "attribute_count": 15,
+          "file": "swordsman/Cataphract.json"
+        },
+        {
+          "class_name": "Centurion",
+          "class_id": 1005,
+          "skill_count": 9,
+          "attribute_count": 5,
+          "file": "swordsman/Centurion.json"
+        },
+        {
+          "class_name": "Doppelsoeldner",
+          "class_id": 1009,
+          "skill_count": 8,
+          "attribute_count": 19,
+          "file": "swordsman/Doppelsoeldner.json"
+        },
+        {
+          "class_name": "Dragoon",
+          "class_id": 1015,
+          "skill_count": 8,
+          "attribute_count": 17,
+          "file": "swordsman/Dragoon.json"
+        },
+        {
+          "class_name": "Fencer",
+          "class_id": 1014,
+          "skill_count": 7,
+          "attribute_count": 13,
+          "file": "swordsman/Fencer.json"
+        },
+        {
+          "class_name": "Hackapell",
+          "class_id": 1021,
+          "skill_count": 6,
+          "attribute_count": 15,
+          "file": "swordsman/Hackapell.json"
+        },
+        {
+          "class_name": "Highlander",
+          "class_id": 1002,
+          "skill_count": 6,
+          "attribute_count": 12,
+          "file": "swordsman/Highlander.json"
+        },
+        {
+          "class_name": "Hoplite",
+          "class_id": 1004,
+          "skill_count": 7,
+          "attribute_count": 16,
+          "file": "swordsman/Hoplite.json"
+        },
+        {
+          "class_name": "Lancer",
+          "class_id": 1017,
+          "skill_count": 8,
+          "attribute_count": 20,
+          "file": "swordsman/Lancer.json"
+        },
+        {
+          "class_name": "Luchador",
+          "class_id": 1023,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "swordsman/Luchador.json"
+        },
+        {
+          "class_name": "Matador",
+          "class_id": 1018,
+          "skill_count": 7,
+          "attribute_count": 19,
+          "file": "swordsman/Matador.json"
+        },
+        {
+          "class_name": "Murmillo",
+          "class_id": 1012,
+          "skill_count": 7,
+          "attribute_count": 19,
+          "file": "swordsman/Murmillo.json"
+        },
+        {
+          "class_name": "Nak Muay",
+          "class_id": 1019,
+          "skill_count": 6,
+          "attribute_count": 13,
+          "file": "swordsman/Nak_Muay.json"
+        },
+        {
+          "class_name": "Peltasta",
+          "class_id": 1003,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "swordsman/Peltasta.json"
+        },
+        {
+          "class_name": "Retiarius",
+          "class_id": 1020,
+          "skill_count": 7,
+          "attribute_count": 19,
+          "file": "swordsman/Retiarius.json"
+        },
+        {
+          "class_name": "Rodelero",
+          "class_id": 1010,
+          "skill_count": 6,
+          "attribute_count": 20,
+          "file": "swordsman/Rodelero.json"
+        },
+        {
+          "class_name": "Shenji",
+          "class_id": 1024,
+          "skill_count": 7,
+          "attribute_count": 19,
+          "file": "swordsman/Shenji.json"
+        },
+        {
+          "class_name": "Swordsman",
+          "class_id": 1001,
+          "skill_count": 6,
+          "attribute_count": 12,
+          "file": "swordsman/Swordsman.json"
+        },
+        {
+          "class_name": "Templar",
+          "class_id": 1016,
+          "skill_count": 8,
+          "attribute_count": 16,
+          "file": "swordsman/Templar.json"
+        },
+        {
+          "class_name": "Winged Hussar",
+          "class_id": 1025,
+          "skill_count": 7,
+          "attribute_count": 16,
+          "file": "swordsman/Winged_Hussar.json"
+        }
+      ]
+    },
+    "wizard": {
+      "class_count": 21,
+      "total_skills": 147,
+      "total_attributes": 334,
+      "classes": [
+        {
+          "class_name": "Alchemist",
+          "class_id": 2005,
+          "skill_count": 9,
+          "attribute_count": 9,
+          "file": "wizard/Alchemist.json"
+        },
+        {
+          "class_name": "Bokor",
+          "class_id": 2022,
+          "skill_count": 7,
+          "attribute_count": 16,
+          "file": "wizard/Bokor.json"
+        },
+        {
+          "class_name": "Chronomancer",
+          "class_id": 2008,
+          "skill_count": 7,
+          "attribute_count": 13,
+          "file": "wizard/Chronomancer.json"
+        },
+        {
+          "class_name": "Cryomancer",
+          "class_id": 2003,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "wizard/Cryomancer.json"
+        },
+        {
+          "class_name": "Elementalist",
+          "class_id": 2011,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "wizard/Elementalist.json"
+        },
+        {
+          "class_name": "Featherfoot",
+          "class_id": 2016,
+          "skill_count": 8,
+          "attribute_count": 12,
+          "file": "wizard/Featherfoot.json"
+        },
+        {
+          "class_name": "Illusionist",
+          "class_id": 2025,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "wizard/Illusionist.json"
+        },
+        {
+          "class_name": "Keraunos",
+          "class_id": 2024,
+          "skill_count": 7,
+          "attribute_count": 13,
+          "file": "wizard/Keraunos.json"
+        },
+        {
+          "class_name": "Mimic",
+          "class_id": 2012,
+          "skill_count": 0,
+          "attribute_count": 0,
+          "file": "wizard/Mimic.json"
+        },
+        {
+          "class_name": "Necromancer",
+          "class_id": 2009,
+          "skill_count": 12,
+          "attribute_count": 20,
+          "file": "wizard/Necromancer.json"
+        },
+        {
+          "class_name": "Onmyoji",
+          "class_id": 2020,
+          "skill_count": 6,
+          "attribute_count": 16,
+          "file": "wizard/Onmyoji.json"
+        },
+        {
+          "class_name": "Psychokino",
+          "class_id": 2004,
+          "skill_count": 6,
+          "attribute_count": 16,
+          "file": "wizard/Psychokino.json"
+        },
+        {
+          "class_name": "Pyromancer",
+          "class_id": 2002,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "wizard/Pyromancer.json"
+        },
+        {
+          "class_name": "Rune Caster",
+          "class_id": 2017,
+          "skill_count": 8,
+          "attribute_count": 19,
+          "file": "wizard/Rune_Caster.json"
+        },
+        {
+          "class_name": "Sage",
+          "class_id": 2014,
+          "skill_count": 8,
+          "attribute_count": 20,
+          "file": "wizard/Sage.json"
+        },
+        {
+          "class_name": "Shadowmancer",
+          "class_id": 2019,
+          "skill_count": 7,
+          "attribute_count": 12,
+          "file": "wizard/Shadowmancer.json"
+        },
+        {
+          "class_name": "Sorcerer",
+          "class_id": 2006,
+          "skill_count": 8,
+          "attribute_count": 18,
+          "file": "wizard/Sorcerer.json"
+        },
+        {
+          "class_name": "Taoist",
+          "class_id": 2021,
+          "skill_count": 7,
+          "attribute_count": 19,
+          "file": "wizard/Taoist.json"
+        },
+        {
+          "class_name": "Terramancer",
+          "class_id": 2023,
+          "skill_count": 6,
+          "attribute_count": 17,
+          "file": "wizard/Terramancer.json"
+        },
+        {
+          "class_name": "Warlock",
+          "class_id": 2015,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "wizard/Warlock.json"
+        },
+        {
+          "class_name": "Wizard",
+          "class_id": 2001,
+          "skill_count": 6,
+          "attribute_count": 14,
+          "file": "wizard/Wizard.json"
+        }
+      ]
+    },
+    "archer": {
+      "class_count": 20,
+      "total_skills": 131,
+      "total_attributes": 295,
+      "classes": [
+        {
+          "class_name": "Appraiser",
+          "class_id": 3013,
+          "skill_count": 6,
+          "attribute_count": 8,
+          "file": "archer/Appraiser.json"
+        },
+        {
+          "class_name": "Arbalester",
+          "class_id": 3103,
+          "skill_count": 6,
+          "attribute_count": 15,
+          "file": "archer/Arbalester.json"
+        },
+        {
+          "class_name": "Archer",
+          "class_id": 3001,
+          "skill_count": 6,
+          "attribute_count": 10,
+          "file": "archer/Archer.json"
+        },
+        {
+          "class_name": "Arquebusier",
+          "class_id": 3104,
+          "skill_count": 6,
+          "attribute_count": 16,
+          "file": "archer/Arquebusier.json"
+        },
+        {
+          "class_name": "Cannoneer",
+          "class_id": 3015,
+          "skill_count": 6,
+          "attribute_count": 12,
+          "file": "archer/Cannoneer.json"
+        },
+        {
+          "class_name": "Engineer",
+          "class_id": 3106,
+          "skill_count": 8,
+          "attribute_count": 20,
+          "file": "archer/Engineer.json"
+        },
+        {
+          "class_name": "Falconer",
+          "class_id": 3014,
+          "skill_count": 8,
+          "attribute_count": 14,
+          "file": "archer/Falconer.json"
+        },
+        {
+          "class_name": "Fletcher",
+          "class_id": 3011,
+          "skill_count": 6,
+          "attribute_count": 19,
+          "file": "archer/Fletcher.json"
+        },
+        {
+          "class_name": "Godeye",
+          "class_id": 3107,
+          "skill_count": 6,
+          "attribute_count": 18,
+          "file": "archer/Godeye.json"
+        },
+        {
+          "class_name": "Hunter",
+          "class_id": 3002,
+          "skill_count": 8,
+          "attribute_count": 20,
+          "file": "archer/Hunter.json"
+        },
+        {
+          "class_name": "Hwarang",
+          "class_id": 3105,
+          "skill_count": 6,
+          "attribute_count": 16,
+          "file": "archer/Hwarang.json"
+        },
+        {
+          "class_name": "Matross",
+          "class_id": 3101,
+          "skill_count": 6,
+          "attribute_count": 13,
+          "file": "archer/Matross.json"
+        },
+        {
+          "class_name": "Mergen",
+          "class_id": 3017,
+          "skill_count": 6,
+          "attribute_count": 15,
+          "file": "archer/Mergen.json"
+        },
+        {
+          "class_name": "Musketeer",
+          "class_id": 3016,
+          "skill_count": 6,
+          "attribute_count": 12,
+          "file": "archer/Musketeer.json"
+        },
+        {
+          "class_name": "Pied Piper",
+          "class_id": 3012,
+          "skill_count": 8,
+          "attribute_count": 11,
+          "file": "archer/Pied_Piper.json"
+        },
+        {
+          "class_name": "Quarrel Shooter",
+          "class_id": 3003,
+          "skill_count": 7,
+          "attribute_count": 16,
+          "file": "archer/Quarrel_Shooter.json"
+        },
+        {
+          "class_name": "Ranger",
+          "class_id": 3004,
+          "skill_count": 6,
+          "attribute_count": 15,
+          "file": "archer/Ranger.json"
+        },
+        {
+          "class_name": "Sapper",
+          "class_id": 3005,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "archer/Sapper.json"
+        },
+        {
+          "class_name": "Tiger Hunter",
+          "class_id": 3102,
+          "skill_count": 6,
+          "attribute_count": 11,
+          "file": "archer/Tiger_Hunter.json"
+        },
+        {
+          "class_name": "Wugushi",
+          "class_id": 3006,
+          "skill_count": 7,
+          "attribute_count": 14,
+          "file": "archer/Wugushi.json"
+        }
+      ]
+    },
+    "scout": {
+      "class_count": 19,
+      "total_skills": 120,
+      "total_attributes": 285,
+      "classes": [
+        {
+          "class_name": "Ardito",
+          "class_id": 5013,
+          "skill_count": 6,
+          "attribute_count": 20,
+          "file": "scout/Ardito.json"
+        },
+        {
+          "class_name": "Assassin",
+          "class_id": 5002,
+          "skill_count": 6,
+          "attribute_count": 19,
+          "file": "scout/Assassin.json"
+        },
+        {
+          "class_name": "Bullet Marker",
+          "class_id": 5012,
+          "skill_count": 8,
+          "attribute_count": 18,
+          "file": "scout/Bullet_Marker.json"
+        },
+        {
+          "class_name": "Clown",
+          "class_id": 5016,
+          "skill_count": 6,
+          "attribute_count": 14,
+          "file": "scout/Clown.json"
+        },
+        {
+          "class_name": "Corsair",
+          "class_id": 5005,
+          "skill_count": 8,
+          "attribute_count": 16,
+          "file": "scout/Corsair.json"
+        },
+        {
+          "class_name": "Desperado",
+          "class_id": 5019,
+          "skill_count": 6,
+          "attribute_count": 17,
+          "file": "scout/Desperado.json"
+        },
+        {
+          "class_name": "Enchanter",
+          "class_id": 5008,
+          "skill_count": 6,
+          "attribute_count": 8,
+          "file": "scout/Enchanter.json"
+        },
+        {
+          "class_name": "Hakkapeliter",
+          "class_id": 5017,
+          "skill_count": 6,
+          "attribute_count": 14,
+          "file": "scout/Hakkapeliter.json"
+        },
+        {
+          "class_name": "Jaguar",
+          "class_id": 5018,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "scout/Jaguar.json"
+        },
+        {
+          "class_name": "Linker",
+          "class_id": 5009,
+          "skill_count": 6,
+          "attribute_count": 10,
+          "file": "scout/Linker.json"
+        },
+        {
+          "class_name": "Outlaw",
+          "class_id": 5003,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "scout/Outlaw.json"
+        },
+        {
+          "class_name": "Rangda",
+          "class_id": 5015,
+          "skill_count": 6,
+          "attribute_count": 15,
+          "file": "scout/Rangda.json"
+        },
+        {
+          "class_name": "Rogue",
+          "class_id": 5010,
+          "skill_count": 7,
+          "attribute_count": 13,
+          "file": "scout/Rogue.json"
+        },
+        {
+          "class_name": "Schwarzer Reiter",
+          "class_id": 5011,
+          "skill_count": 6,
+          "attribute_count": 20,
+          "file": "scout/Schwarzer_Reiter.json"
+        },
+        {
+          "class_name": "Scout",
+          "class_id": 5001,
+          "skill_count": 5,
+          "attribute_count": 8,
+          "file": "scout/Scout.json"
+        },
+        {
+          "class_name": "Sheriff",
+          "class_id": 5014,
+          "skill_count": 6,
+          "attribute_count": 16,
+          "file": "scout/Sheriff.json"
+        },
+        {
+          "class_name": "Shinobi",
+          "class_id": 5006,
+          "skill_count": 6,
+          "attribute_count": 16,
+          "file": "scout/Shinobi.json"
+        },
+        {
+          "class_name": "Squire",
+          "class_id": 5004,
+          "skill_count": 6,
+          "attribute_count": 12,
+          "file": "scout/Squire.json"
+        },
+        {
+          "class_name": "Thaumaturge",
+          "class_id": 5007,
+          "skill_count": 6,
+          "attribute_count": 9,
+          "file": "scout/Thaumaturge.json"
+        }
+      ]
+    },
+    "cleric": {
+      "class_count": 21,
+      "total_skills": 134,
+      "total_attributes": 324,
+      "classes": [
+        {
+          "class_name": "Chaplain",
+          "class_id": 4012,
+          "skill_count": 6,
+          "attribute_count": 10,
+          "file": "cleric/Chaplain.json"
+        },
+        {
+          "class_name": "Cleric",
+          "class_id": 4001,
+          "skill_count": 5,
+          "attribute_count": 19,
+          "file": "cleric/Cleric.json"
+        },
+        {
+          "class_name": "Crusader",
+          "class_id": 4021,
+          "skill_count": 7,
+          "attribute_count": 19,
+          "file": "cleric/Crusader.json"
+        },
+        {
+          "class_name": "Dievdirbys",
+          "class_id": 4007,
+          "skill_count": 7,
+          "attribute_count": 16,
+          "file": "cleric/Dievdirbys.json"
+        },
+        {
+          "class_name": "Druid",
+          "class_id": 4005,
+          "skill_count": 7,
+          "attribute_count": 13,
+          "file": "cleric/Druid.json"
+        },
+        {
+          "class_name": "Exorcist",
+          "class_id": 4020,
+          "skill_count": 7,
+          "attribute_count": 19,
+          "file": "cleric/Exorcist.json"
+        },
+        {
+          "class_name": "Inquisitor",
+          "class_id": 4016,
+          "skill_count": 7,
+          "attribute_count": 20,
+          "file": "cleric/Inquisitor.json"
+        },
+        {
+          "class_name": "Kabbalist",
+          "class_id": 4015,
+          "skill_count": 6,
+          "attribute_count": 16,
+          "file": "cleric/Kabbalist.json"
+        },
+        {
+          "class_name": "Krivis",
+          "class_id": 4003,
+          "skill_count": 6,
+          "attribute_count": 16,
+          "file": "cleric/Krivis.json"
+        },
+        {
+          "class_name": "Lama",
+          "class_id": 4022,
+          "skill_count": 8,
+          "attribute_count": 18,
+          "file": "cleric/Lama.json"
+        },
+        {
+          "class_name": "Miko",
+          "class_id": 4018,
+          "skill_count": 6,
+          "attribute_count": 12,
+          "file": "cleric/Miko.json"
+        },
+        {
+          "class_name": "Monk",
+          "class_id": 4009,
+          "skill_count": 8,
+          "attribute_count": 18,
+          "file": "cleric/Monk.json"
+        },
+        {
+          "class_name": "Oracle",
+          "class_id": 4008,
+          "skill_count": 7,
+          "attribute_count": 17,
+          "file": "cleric/Oracle.json"
+        },
+        {
+          "class_name": "Paladin",
+          "class_id": 4011,
+          "skill_count": 6,
+          "attribute_count": 18,
+          "file": "cleric/Paladin.json"
+        },
+        {
+          "class_name": "Pardoner",
+          "class_id": 4010,
+          "skill_count": 7,
+          "attribute_count": 15,
+          "file": "cleric/Pardoner.json"
+        },
+        {
+          "class_name": "Plague Doctor",
+          "class_id": 4014,
+          "skill_count": 7,
+          "attribute_count": 15,
+          "file": "cleric/Plague_Doctor.json"
+        },
+        {
+          "class_name": "Pontifex",
+          "class_id": 4023,
+          "skill_count": 6,
+          "attribute_count": 14,
+          "file": "cleric/Pontifex.json"
+        },
+        {
+          "class_name": "Priest",
+          "class_id": 4002,
+          "skill_count": 7,
+          "attribute_count": 18,
+          "file": "cleric/Priest.json"
+        },
+        {
+          "class_name": "Sadhu",
+          "class_id": 4006,
+          "skill_count": 7,
+          "attribute_count": 15,
+          "file": "cleric/Sadhu.json"
+        },
+        {
+          "class_name": "Shepherd",
+          "class_id": 4013,
+          "skill_count": 0,
+          "attribute_count": 0,
+          "file": "cleric/Shepherd.json"
+        },
+        {
+          "class_name": "Zealot",
+          "class_id": 4019,
+          "skill_count": 7,
+          "attribute_count": 16,
+          "file": "cleric/Zealot.json"
+        }
+      ]
+    }
+  }
+}
