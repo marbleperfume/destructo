@@ -1,0 +1,111 @@
+{
+  "build": {
+    "tree": "Scout",
+    "classes": [
+      "Scout",
+      "Assassin"
+    ],
+    "stance": "DaggerOneHandSword / DaggerShield",
+    "primary_damage_type": "Slash",
+    "secondary_damage_type": "Pierce (Piercing Heart only)"
+  },
+  "rotation_model": {
+    "type": "animation_lock",
+    "note": "No GCD. Skills fire as fast as animation allows.",
+    "anim_lock_standard": 0.7,
+    "anim_lock_channel": 2.5,
+    "anim_lock_filler": 0.5,
+    "burst_window_seconds": 6.0,
+    "dead_window_seconds": 9.0,
+    "burst_sfr_total": 166424,
+    "filler_sfr_per_second": 2606.0
+  },
+  "skills_at_max_level": {
+    "Annihilation": {
+      "sfr": 3430,
+      "hits": 14,
+      "total": 48020,
+      "oh": 1,
+      "cd": 30,
+      "type": "Slash",
+      "channeled": true
+    },
+    "Instant Acceleration": {
+      "sfr": 6215,
+      "hits": 4,
+      "total": 24860,
+      "oh": 2,
+      "cd": 15,
+      "type": "Slash"
+    },
+    "Behead": {
+      "sfr": 3947,
+      "hits": 6,
+      "total": 23682,
+      "oh": 2,
+      "cd": 15,
+      "type": "Slash",
+      "def_ignore": 0.15
+    },
+    "Piercing Heart": {
+      "sfr": 5330,
+      "hits": 4,
+      "total": 21320,
+      "oh": 1,
+      "cd": 10,
+      "type": "Pierce",
+      "def_ignore": 0.15
+    },
+    "Dagger Slash": {
+      "sfr": 1303,
+      "hits": 2,
+      "total": 2606,
+      "oh": 1,
+      "cd": 1,
+      "type": "Slash",
+      "filler": true
+    }
+  },
+  "targets_tested": {
+    "Black Pawnd": {
+      "lv": 145,
+      "type": "Normal",
+      "armor": "Leather",
+      "hp": 159308,
+      "def": 3970,
+      "blk": 0
+    },
+    "Naktis": {
+      "lv": 145,
+      "type": "Boss",
+      "armor": "Ghost",
+      "hp": 1398732,
+      "def": 13997,
+      "blk": 0
+    },
+    "Linkroller": {
+      "lv": 145,
+      "type": "Boss",
+      "armor": "Plate",
+      "hp": 148859,
+      "def": 2728,
+      "blk": 0
+    }
+  },
+  "ttk_results": {
+    "Black Pawnd": {
+      "atk_500": 20.1,
+      "atk_1000": 3.9,
+      "atk_1500": 2.5
+    },
+    "Naktis": {
+      "atk_3000": 38.2,
+      "atk_5000": 18.9,
+      "atk_10000": 3.9,
+      "atk_20000": 2.5
+    },
+    "Linkroller": {
+      "atk_3000": 2.5
+    }
+  }
+}
