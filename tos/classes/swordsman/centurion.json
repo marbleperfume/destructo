@@ -1,0 +1,347 @@
+{
+  "class_name": "Centurion",
+  "class_id": 1005,
+  "tree": "swordsman",
+  "skills": [
+    {
+      "id": 10901,
+      "name": "Conscript",
+      "description": "Create a formation that calls on the squads members.",
+      "type": "buff",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 22.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Able to assemble CaptionRatio squad members"
+    },
+    {
+      "id": 10902,
+      "name": "Phalanx",
+      "description": "Change to the Phalanx formation. All of the squad members' block will be focused to the 3 in the front row.",
+      "type": "buff",
+      "max_lv": 0,
+      "OH": 0,
+      "CD": 0.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Additional Block: + CaptionRatio"
+    },
+    {
+      "id": 10903,
+      "name": "Tercio",
+      "description": "Change to Tersio Formation. Defense is concentrated on the three frontline players and provokes enemy.",
+      "type": "buff",
+      "max_lv": 0,
+      "OH": 0,
+      "CD": 0.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          0,
+          10,
+          20,
+          30,
+          40,
+          50,
+          60,
+          70,
+          80,
+          90
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Additional Defense: + CaptionRatio"
+    },
+    {
+      "id": 10904,
+      "name": "Winged Formation",
+      "description": "Change to the Crane Wing formation. Decreases the defense of enemies within the formation while targeting the leader.",
+      "type": "buff",
+      "max_lv": 0,
+      "OH": 0,
+      "CD": 0.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          50,
+          53,
+          56,
+          59,
+          62,
+          65,
+          68,
+          71,
+          74,
+          77
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Defense: - CaptionRatio %"
+    },
+    {
+      "id": 10905,
+      "name": "Wedge Formation",
+      "description": "Change to the Wedge formation.",
+      "type": "buff",
+      "max_lv": 0,
+      "OH": 0,
+      "CD": 0.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "2": [
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Conveys CaptionRatio2 % attack to squad members"
+    },
+    {
+      "id": 10906,
+      "name": "Schiltron Formation",
+      "description": "Change to the Schiltron formation. All squad members will stop at once while raising their weapons to prevent from enemies rushing in.",
+      "type": "buff",
+      "max_lv": 0,
+      "OH": 0,
+      "CD": 0.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": null,
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Consumes 1% SP every 2 seconds"
+    },
+    {
+      "id": 10907,
+      "name": "Testudo",
+      "description": "Switches to the Testudo formation. Increases the defense of all members at the cost of slower movement speed.",
+      "type": "buff",
+      "max_lv": 0,
+      "OH": 0,
+      "CD": 0.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ],
+        "2": [
+          0,
+          30,
+          60,
+          90,
+          120,
+          150,
+          180,
+          210,
+          240,
+          270
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Attack: - CaptionRatio %"
+    },
+    {
+      "id": 10908,
+      "name": "Change Direction",
+      "description": "Realign direction of formation to leader's view.",
+      "type": "buff",
+      "max_lv": 0,
+      "OH": 0,
+      "CD": 0.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": null,
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Rearrange in line with leader's direction."
+    },
+    {
+      "id": 10910,
+      "name": "Special Formation",
+      "description": "Creates a formation which brings squad members together. The skill cooldown time of the squad members that entered into the formation will be reduced in half. Duration will increase by Skill Level, and the number of members in the squad.",
+      "type": "buff",
+      "max_lv": 0,
+      "OH": 0,
+      "CD": 120.0,
+      "SP": 0,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75,
+          80
+        ],
+        "2": [
+          55,
+          60,
+          65,
+          70,
+          75,
+          80,
+          85,
+          90,
+          95,
+          100
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Cooldown time reduced by 50%"
+    }
+  ],
+  "attributes": [
+    {
+      "id": 110001,
+      "name": "Phalanx: Slow",
+      "max_lv": 4,
+      "category": "modifier",
+      "description": "Inflicts [Slow] when an enemy's attack is blocked while in the [Phalanx] formation. Increases the duration of [Slow] by 4 seconds per attribute level."
+    },
+    {
+      "id": 110002,
+      "name": "Tercio: Change Formation",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "Changes the shape of the [Tercio] formation. The locations of the number 4 and the number 6 will move away from the center."
+    },
+    {
+      "id": 110003,
+      "name": "Crane Wing: Change Formation",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "Changes the shape of the [Crane Wing] formation. Changes into a shape that will lure enemies more deep inside."
+    },
+    {
+      "id": 110004,
+      "name": "Schiltron: Healing Time",
+      "max_lv": 5,
+      "category": "modifier",
+      "description": "Decreases a member's HP recovery time by 2 seconds per attribute level while in the [Schiltron] formation Increases SP consumption by 20%"
+    },
+    {
+      "id": 110005,
+      "name": "Testudo: Movement",
+      "max_lv": 5,
+      "category": "modifier",
+      "description": "Decreases movement speed by 5% per attribute level of your members when changing into the [Testudo] formation."
+    }
+  ]
+}

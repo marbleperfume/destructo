@@ -1,0 +1,321 @@
+{
+  "class_name": "Swordsman",
+  "class_id": 1001,
+  "tree": "swordsman",
+  "skills": [
+    {
+      "id": 10001,
+      "name": "Thrust",
+      "description": "Push the point of your weapon into enemies, performing a strong piercing attack.",
+      "type": "attack",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 1.0,
+      "SP": 10,
+      "hits": 1,
+      "stance": "All",
+      "property": "None",
+      "sfr": [
+        1425,
+        1677,
+        1929,
+        2181,
+        2433,
+        2685,
+        2937,
+        3189,
+        3441,
+        3693,
+        3945,
+        4197,
+        4449,
+        4701,
+        4953
+      ],
+      "skillsr": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "captionratio": null,
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Skill Factor: SkillFactor %\nAoE Attack Ratio: SkillSR"
+    },
+    {
+      "id": 10002,
+      "name": "Bash",
+      "description": "Inflict damage on an enemy with a powerful attack.",
+      "type": "attack",
+      "max_lv": 5,
+      "OH": 3,
+      "CD": 10.0,
+      "SP": 49,
+      "hits": 1,
+      "stance": "All",
+      "property": "None",
+      "sfr": [
+        1146,
+        1834,
+        2522,
+        3210,
+        3898,
+        4587,
+        5275,
+        5963,
+        6651,
+        7339,
+        8027,
+        8715,
+        9403,
+        10091,
+        10779
+      ],
+      "skillsr": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "captionratio": null,
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Skill Factor: SkillFactor %\nAoE Attack Ratio: SkillSR"
+    },
+    {
+      "id": 10003,
+      "name": "Gung Ho",
+      "description": "Increases physical attack damage through the power of determination.",
+      "type": "buff",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 60.0,
+      "SP": 168,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+          26,
+          28
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Physical Attack Damage + CaptionRatio %\nDuration: 30 minutes"
+    },
+    {
+      "id": 10005,
+      "name": "Pain Barrier",
+      "description": "Grants immunity from Knockdowns, Knockbacks and being Staggered. Grants temporary immunity to all removable status ailments except stuns, binds, immobility, curse, freeze and petrification after use. Also increases the chance of resisting status ailments for the duration of Pain Barrier.",
+      "type": "buff",
+      "max_lv": 1,
+      "OH": 0,
+      "CD": 30.0,
+      "SP": 134,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": null,
+      "captiontime": {
+        "0": [
+          25,
+          30,
+          35,
+          40,
+          45,
+          50,
+          55,
+          60,
+          65,
+          70,
+          75
+        ]
+      },
+      "def_ignore": null,
+      "effect_text": "Pain Barrier duration: CaptionTime seconds\nImmunity to status ailments: 3 seconds"
+    },
+    {
+      "id": 10009,
+      "name": "Bear",
+      "description": "Reduces incoming damage from enemies through the power of determination.",
+      "type": "buff",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 60.0,
+      "SP": 168,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+          26,
+          28
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Damage Taken: - CaptionRatio %\nDuration: 30 minutes"
+    },
+    {
+      "id": 10010,
+      "name": "Liberate",
+      "description": "Unleashes your power within to draw nearby enemies. You gain increased Threat from monsters with every attack for the duration of the buff.",
+      "type": "buff",
+      "max_lv": 1,
+      "OH": 0,
+      "CD": 60.0,
+      "SP": 180,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": null,
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Threat increase: +500%\nDuration: 30 seconds\nMax. level 1"
+    }
+  ],
+  "attributes": [
+    {
+      "id": 10028,
+      "name": "Shield Mastery: Swordsman",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* 10% of Weapon ATK is applied as the Physical Defense when equipping [One-handed weapon] with [Shield]\n\n* (Value is applied both to the main and second slot)"
+    },
+    {
+      "id": 101001,
+      "name": "Bash: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the skill factor of [Bash] by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 101004,
+      "name": "Thrust: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the skill factor of [Thrust] by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 101007,
+      "name": "Gung Ho: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases [Gung Ho]'s physical attack damage increasing effects by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 101015,
+      "name": "Bash: Knockdown",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Enemies hit by [Bash] are knocked down\n\n* Increases SP consumption by 30%"
+    },
+    {
+      "id": 101020,
+      "name": "Provoke",
+      "max_lv": 10,
+      "category": "modifier",
+      "description": "* Increases threat values when attacking enemies by 1500% per attribute level"
+    },
+    {
+      "id": 101022,
+      "name": "Bear: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases [Bear]'s incoming damage reducing effects by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 101023,
+      "name": "Liberate: Awaken",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Reduces the duration of [Liberate] to 12 seconds and increases damage to enemies by 50%"
+    },
+    {
+      "id": 101024,
+      "name": "Liberate: Fortitude",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Reduces the duration of [Liberate] to 6 seconds and increases the incoming damage reduction effect by 50%"
+    },
+    {
+      "id": 101025,
+      "name": "[Arts] Thrust: Charge",
+      "max_lv": 1,
+      "category": "arts_behavior",
+      "description": "* Increases the cooldown of [Thrust] by 4, and dashes to your target and deals damage upon use."
+    },
+    {
+      "id": 101026,
+      "name": "[Arts] Thrust: Enhanced Upgrade",
+      "max_lv": 30,
+      "category": "arts_upgrade",
+      "description": "* Increases the Skill Factor of [Thrust] by 1.25% per attribute level"
+    },
+    {
+      "id": 101027,
+      "name": "[Arts] Bash: Enhanced Upgrade",
+      "max_lv": 30,
+      "category": "arts_upgrade",
+      "description": "* Increases the Skill Factor of [Bash] by 1.25% per attribute level"
+    }
+  ]
+}
