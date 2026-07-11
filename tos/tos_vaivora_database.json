@@ -1,0 +1,792 @@
+{
+  "system": "vaivora_weapons",
+  "game": "Tree of Savior",
+  "version": "Episode 14+",
+  "description": "Vaivora weapons are class-specific endgame weapons that enhance a designated skill with additional effects, procs, and damage multipliers. Each class has exactly one Vaivora weapon named after the skill it enhances.",
+  "mechanics": {
+    "acquisition": "Crafted from Vaivora Fragments (endgame raid drops) + class-specific materials. Cost: 500M-2B silver equivalent.",
+    "weapon_swap_system": "Players can equip multiple weapon sets and auto-swap between them. Each Vaivora only activates when its weapon set is equipped. Swap triggers on skill use.",
+    "scaling_tiers": [
+      {
+        "level": 1,
+        "effect": "Base proc/enhancement"
+      },
+      {
+        "level": 2,
+        "effect": "+1 skill level to designated skill"
+      },
+      {
+        "level": 3,
+        "effect": "Major enhancement (often +100% Final Damage to one skill)"
+      }
+    ],
+    "common_effects": [
+      "Skill level +1/+2/+3 to designated skill",
+      "New proc during skill use (extra hits, summons)",
+      "Final Damage +30-100% on designated skill",
+      "Cooldown reduction on designated skill",
+      "Additional hits/targets on designated skill",
+      "Unique mechanics (invincibility, teleport, element change)"
+    ]
+  },
+  "impact_on_atk_calculations": {
+    "direct_multipliers": "Final Damage bonuses (30-100%) are MULTIPLICATIVE with all other modifiers. Applied after Enhance/Arts/Commission chain.",
+    "effective_sfr_boost": "Skill level +1-3 increases SFR array index, giving ~15-30% more base SFR per added level.",
+    "proc_damage": "Random procs during dead time: 1800-3600% SFR × 1-4 hits, ~15% chance/sec. Fills rotation gaps.",
+    "swap_multiplier": "Auto-swap between weapon sets grants +40% damage to burst skills during swap window.",
+    "total_effective_multiplier": "Full Vaivora investment (lv3 + swap system) typically adds x1.8-x2.5 to a build's effective DPS.",
+    "modeling_approach": "Template system models as: vaivora_investment = none | mid (lv1-2, no swap) | max (lv3, full swap). Applied as post-rotation multiplier to affected skills only."
+  },
+  "bonus_damage_system": {
+    "formula": "Bonus% = (Offense_Stat - Defense_Stat) / (Defender_Level × 30) × 100",
+    "pve_simplified": "Bonus% = Attack_vs_X / (Monster_Level × 30) × 100",
+    "example": "At lv500 monster: 15,000 'Attack vs. Medium' = +100% damage (doubles it)",
+    "properties": [
+      "Flat bonus added AFTER main formula",
+      "Bypasses defense entirely",
+      "Vaivora weapons grant large 'Attack vs.' values",
+      "Stacks additively with other sources of same property bonus",
+      "Monster has no offsetting stat in PvE (offsetting = 0)"
+    ],
+    "types": [
+      "Attack vs. Small",
+      "Attack vs. Medium",
+      "Attack vs. Large",
+      "Attack vs. Ghost",
+      "Attack vs. Plate",
+      "Attack vs. Leather",
+      "Attack vs. Cloth",
+      "Attack vs. Plant",
+      "Attack vs. Beast",
+      "Attack vs. Insect",
+      "Attack vs. Mutant",
+      "Attack vs. Devil"
+    ]
+  },
+  "database": {
+    "swordsman": [
+      {
+        "class": "Barbarian",
+        "vaivora_weapon": "Pounding Rage",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Damage Over Time",
+          "Utility - Self"
+        ]
+      },
+      {
+        "class": "Blossom Blader",
+        "vaivora_weapon": "Florescence",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Cataphract",
+        "vaivora_weapon": "Matchless",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Channeling",
+          "Area Damage"
+        ]
+      },
+      {
+        "class": "Doppelsoeldner",
+        "vaivora_weapon": "Wedge Blast",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Channeling"
+        ],
+        "description": "Single Target Focus"
+      },
+      {
+        "class": "Dragoon",
+        "vaivora_weapon": "Halberd",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Utility - Self",
+          "Area Damage"
+        ]
+      },
+      {
+        "class": "Fencer",
+        "vaivora_weapon": "Leventador",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Hackapell",
+        "vaivora_weapon": "Saber",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Highlander",
+        "vaivora_weapon": "Dual Sword",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Area Damage"
+        ],
+        "description": "Single Target Focus"
+      },
+      {
+        "class": "Hoplite",
+        "vaivora_weapon": "Javelin",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Lancer",
+        "vaivora_weapon": "Grind",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Utility - Self"
+        ],
+        "description": "Single Target Focus"
+      },
+      {
+        "class": "Luchador",
+        "vaivora_weapon": "Doble Attaque",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Matador",
+        "vaivora_weapon": "Banderilla",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Murmillo",
+        "vaivora_weapon": "Arena",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Nak Muay",
+        "vaivora_weapon": "Boreas",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Peltasta",
+        "vaivora_weapon": "Serrated Shield",
+        "role": "Utility"
+      },
+      {
+        "class": "Retiarius",
+        "vaivora_weapon": "Rete Shooter",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Rodelero",
+        "vaivora_weapon": "Escudo Espada",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Utility - Party"
+        ]
+      },
+      {
+        "class": "Templar",
+        "vaivora_weapon": "Party Buffs",
+        "role": "Utility",
+        "combat_specialties": [
+          "Utility - Party"
+        ]
+      }
+    ],
+    "wizard": [
+      {
+        "class": "Alchemist",
+        "vaivora_weapon": "Player Shop / Crafting",
+        "role": "Utility",
+        "description": "Alchemists can craft potions and lack any use in battle"
+      },
+      {
+        "class": "Bokor",
+        "vaivora_weapon": "Lewa Advent",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Damage Over Time"
+        ],
+        "description": "Bokor is a bossing class that deals dark property damage through the debuffs it applies",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2022}ff50055"
+      },
+      {
+        "class": "Chronomancer",
+        "vaivora_weapon": "Time Rush",
+        "role": "Utility",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Self",
+          "Utility - Party"
+        ],
+        "description": "Chronomancer is a support class that can pass a part of your cds, increase the duration of magic circles and reduce the cast time of your skills etc...",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}055401{2008}f00151",
+        "notes": [
+          "max Quickcast if paired with classes with casting skills",
+          "Combat Specialties",
+          "Recommended Skill Builds"
+        ]
+      },
+      {
+        "class": "Cryomancer",
+        "vaivora_weapon": "Icy Snow Bubble",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Casting",
+          "Crowd Control"
+        ],
+        "description": "Cryomancer is a casting class that can use ice-property magic to either attack opponents or freeze them"
+      },
+      {
+        "class": "Elementalist",
+        "vaivora_weapon": "Annihilate",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Casting"
+        ],
+        "description": "Elementalist is a class that can use fire, ice and electric attacks and gives a general damage boost to your whole build",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2011}f0f0a05"
+      },
+      {
+        "class": "Featherfoot",
+        "vaivora_weapon": "Blood Butterfly",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Damage Over Time",
+          "Utility - Self"
+        ],
+        "description": "Featherfoot is a dark property class that has to balance their HP and SP to deal as much damage as possible",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}055401{2016}fa00f005"
+      },
+      {
+        "class": "Keraunos",
+        "vaivora_weapon": "Electric Flow",
+        "role": "Damage Dealer",
+        "description": "Combat - Auto Attacking",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2024}00ff0a5",
+        "notes": [
+          "Single Target Focus",
+          "For optimal bossing DPS, do not put points in Electric Orb (just keep 15 points unused).",
+          "Alchemists can craft potions and lack any use in battle",
+          "Combat - Auto Attacking",
+          "Single Target Focus",
+          "For optimal bossing DPS, do not put points in Electric Orb (just keep 15 points unused)."
+        ]
+      },
+      {
+        "class": "Necromancer",
+        "vaivora_weapon": "Immortality",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Summoning"
+        ],
+        "description": "Necromancer is a summoning class that can summon diverse skeletons and a shoggoth",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}055401{2009}a5000a555"
+      },
+      {
+        "class": "Onmyoji",
+        "vaivora_weapon": "Red Tiger Claw",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Area Damage",
+          "Skill Type - Casting",
+          "Skill Type - Channeling"
+        ],
+        "description": "Onmyoji is a mainly earth and non-property casting class with great AoE for all content",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2020}0ffa5",
+        "notes": [
+          "Can put +5 on Toyou with skill potions"
+        ]
+      },
+      {
+        "class": "Psychokino",
+        "vaivora_weapon": "Biased Gravity",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Channeling"
+        ],
+        "description": "Psychokino is a channeling class that uses psychic-property magic to deal damage or stun and immobilize groups of enemies",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2004}f0e15a"
+      },
+      {
+        "class": "Pyromancer",
+        "vaivora_weapon": "Fire Bolt",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Area Damage",
+          "Damage Over Time"
+        ],
+        "description": "Pyromancer is a class that uses fire-property magic circles to deal damage in both AoE and bossing situations",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2024}00ff0a5"
+      },
+      {
+        "class": "Rune Caster",
+        "vaivora_weapon": "Rune of Vigilance",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Area Damage",
+          "Skill Type - Casting",
+          "Skill Type - Channeling"
+        ],
+        "description": "Rune Casters manipulate runes to deal psychic, earth and non-property magic damage in mostly casting (but also channeling) skills",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2017}a10f1aa5{sklpot}0700",
+        "notes": [
+          "using 7 skill potions is recommended"
+        ]
+      },
+      {
+        "class": "Sage",
+        "vaivora_weapon": "Distortion",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Player Shop / Crafting",
+          "Skill Type - Casting",
+          "Crowd Control"
+        ],
+        "description": "Sage is a non-property class that manipulates dimensions to deal damage with casting and non-casting skills and can help group up enemies",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2014}0ef100a5"
+      },
+      {
+        "class": "Shadowmancer",
+        "vaivora_weapon": "Diffuse Reflection",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Invincibility Frame"
+        ],
+        "description": "Shadowmancers use dark property magic to deal great amounts of damage to a single target and protect themselves from harm",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2019}af11a35",
+        "notes": [
+          "It’s possible to remove points from Conjuration to put them in Hallucination/Shadow Pool"
+        ]
+      },
+      {
+        "class": "Sorcerer",
+        "vaivora_weapon": "Wicked Desire",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Summoning"
+        ],
+        "description": "Sorcerer is a summoning class that is able to summon a boss from its grimoire as well as a few smaller support summons",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}055401{2006}f110855a"
+      },
+      {
+        "class": "Taoist",
+        "vaivora_weapon": "Vigilant Charm",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Area Damage"
+        ],
+        "description": "Taoist is a fire, ice and electric class that uses charms to deal damage to both bosses and groups",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2021}afe050a{sklpot}0900",
+        "notes": [
+          "using all 9 skill potions is extremely recommended"
+        ]
+      },
+      {
+        "class": "Terramancer",
+        "vaivora_weapon": "Stone-Slinger",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Area Damage",
+          "Skill Type - Casting",
+          "Crowd Control"
+        ],
+        "description": "Terramancer is a casting class which uses rocks and sand to attack enemies",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2023}f0a0f5"
+      },
+      {
+        "class": "Warlock",
+        "vaivora_weapon": "Demonische",
+        "role": "Damage Dealer",
+        "description": "Warlocks can summon dark spirits and sacrifice them to damage enemies with dark property magic",
+        "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2015}aff1155{sklpot}0700",
+        "notes": [
+          "using 7 skill potions is extremely recommended",
+          "if not possible, remove points from Pole of Agony or Dark Theurge"
+        ]
+      }
+    ],
+    "archer": [
+      {
+        "class": "Arbalester",
+        "vaivora_weapon": "Double Marking",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Arquebusier",
+        "vaivora_weapon": "Lever Action",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Cannoneer",
+        "vaivora_weapon": "Air Burst",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Falconer",
+        "vaivora_weapon": "Hawking",
+        "role": "Utility"
+      },
+      {
+        "class": "Fletcher",
+        "vaivora_weapon": "Reinforced Bowstring",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Hunter",
+        "vaivora_weapon": "Companion Lover",
+        "role": "Damage Dealer",
+        "notes": [
+          "Reinforced Bowstring​"
+        ]
+      },
+      {
+        "class": "Hwarang",
+        "vaivora_weapon": "Jusalnegi",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Matross",
+        "vaivora_weapon": "Centerfire",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Mergen",
+        "vaivora_weapon": "Orbital Arrow",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Musketeer",
+        "vaivora_weapon": "Armor-Piercing Shell",
+        "role": "Damage Dealer",
+        "description": "Single Target Focus"
+      },
+      {
+        "class": "Quarrel Shooter",
+        "vaivora_weapon": "Cluster Bomb",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Ranger",
+        "vaivora_weapon": "Tempest",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Tiger Hunter",
+        "vaivora_weapon": "Triple Step Single Shot",
+        "role": "Damage Dealer",
+        "description": "Armor-Piercing Shell​",
+        "notes": [
+          "Triple Step Single Shot​"
+        ]
+      },
+      {
+        "class": "Wugushi",
+        "vaivora_weapon": "Shadowless Poison",
+        "role": "Damage Dealer"
+      }
+    ],
+    "cleric": [
+      {
+        "class": "Chaplain",
+        "vaivora_weapon": "Sacred Armor",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Party Buffs"
+        ],
+        "description": "Combat - Auto Attacking"
+      },
+      {
+        "class": "Crusader",
+        "vaivora_weapon": "Convict",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Utility - Self"
+        ]
+      },
+      {
+        "class": "Dievdirbys",
+        "vaivora_weapon": "Memory Leap",
+        "role": "Utility",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Party",
+          "Skill Type - Summoning"
+        ]
+      },
+      {
+        "class": "Druid",
+        "vaivora_weapon": "Damage Dealer",
+        "role": "Off-Healer",
+        "combat_specialties": [
+          "Damage Over Time",
+          "Utility - Self"
+        ]
+      },
+      {
+        "class": "Exorcist",
+        "vaivora_weapon": "Desition",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Channeling",
+          "Skill Type - Casting",
+          "Invincibility Frame",
+          "Utility - Self"
+        ]
+      },
+      {
+        "class": "Inquisitor",
+        "vaivora_weapon": "Outrage",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Channeling"
+        ],
+        "description": "Protecting Grace​"
+      },
+      {
+        "class": "Kabbalist",
+        "vaivora_weapon": "Healer",
+        "role": "Healer",
+        "combat_specialties": [
+          "Utility - Self",
+          "Utility - Party"
+        ]
+      },
+      {
+        "class": "Krivis",
+        "vaivora_weapon": "Sacred Lightning",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Damage Over Time",
+          "Utility - Self"
+        ]
+      },
+      {
+        "class": "Lama",
+        "vaivora_weapon": "Principle of Emptiness",
+        "role": "Damage Dealer",
+        "description": "Ecliptic Blades​",
+        "notes": [
+          "Principle of Emptiness"
+        ]
+      },
+      {
+        "class": "Miko",
+        "vaivora_weapon": "Ema",
+        "role": "Utility",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Self",
+          "Utility - Party"
+        ]
+      },
+      {
+        "class": "Monk",
+        "vaivora_weapon": "Thunder Kick",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Damage Over Time"
+        ]
+      },
+      {
+        "class": "Oracle",
+        "vaivora_weapon": "Utility",
+        "role": "Utility",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Party"
+        ]
+      },
+      {
+        "class": "Paladin",
+        "vaivora_weapon": "Protecting Grace",
+        "role": "Off-Healer",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Party"
+        ]
+      },
+      {
+        "class": "Pardoner",
+        "vaivora_weapon": "Off-Healer",
+        "role": "Utility",
+        "combat_specialties": [
+          "Party Buffs",
+          "Player Shop / Crafting",
+          "Utility - Party"
+        ]
+      },
+      {
+        "class": "Plague Doctor",
+        "vaivora_weapon": "Necrosis",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Damage Over Time",
+          "Area Damage",
+          "Utility - Self"
+        ]
+      },
+      {
+        "class": "Priest",
+        "vaivora_weapon": "Mass Heal: Freeze",
+        "role": "Healer",
+        "combat_specialties": [
+          "Party Buffs"
+        ]
+      },
+      {
+        "class": "Sadhu",
+        "vaivora_weapon": "Agni",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Zealot",
+        "vaivora_weapon": "Conviction",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Damage Over Time"
+        ]
+      }
+    ],
+    "scout": [
+      {
+        "class": "Ardito",
+        "vaivora_weapon": "Carpet Bombing",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Assassin",
+        "vaivora_weapon": "Gasp Up",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Area Damage"
+        ],
+        "description": "Single Target Focus"
+      },
+      {
+        "class": "Bullet Marker",
+        "vaivora_weapon": "Cryolite Bullet",
+        "role": "Damage Dealer",
+        "description": "Schwarzer Reiter",
+        "notes": [
+          "Renovate Trigger​",
+          "Cryolite Bullet​"
+        ]
+      },
+      {
+        "class": "Clown",
+        "vaivora_weapon": "Ecliptic Blades",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Corsair",
+        "vaivora_weapon": "Critical Edge",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Party"
+        ]
+      },
+      {
+        "class": "Enchanter",
+        "vaivora_weapon": "Empowering",
+        "role": "Utility",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Party"
+        ]
+      },
+      {
+        "class": "Hakkapeliter",
+        "vaivora_weapon": "Carbine",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Channeling"
+        ],
+        "description": "Single Target Focus"
+      },
+      {
+        "class": "Linker",
+        "vaivora_weapon": "Superstring",
+        "role": "Utility",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Party",
+          "Crowd Control"
+        ]
+      },
+      {
+        "class": "Outlaw",
+        "vaivora_weapon": "Sabotage",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Rangda",
+        "vaivora_weapon": "Cursed Dagger",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Rogue",
+        "vaivora_weapon": "Phantom Blade",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Damage Over Time"
+        ],
+        "description": "Single Target Focus"
+      },
+      {
+        "class": "Schwarzer Reiter",
+        "vaivora_weapon": "Renovate Trigger",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Channeling",
+          "Damage Over Time"
+        ],
+        "description": "Combat - Auto Attacking",
+        "notes": [
+          "Single Target Focus"
+        ]
+      },
+      {
+        "class": "Sheriff",
+        "vaivora_weapon": "Speedloader",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Skill Type - Channeling",
+          "Damage Over Time"
+        ],
+        "description": "Single Target Focus"
+      },
+      {
+        "class": "Shinobi",
+        "vaivora_weapon": "Shadow Clone",
+        "role": "Damage Dealer"
+      },
+      {
+        "class": "Squire",
+        "vaivora_weapon": "Player Shop / Crafting",
+        "role": "Utility"
+      },
+      {
+        "class": "Thaumaturge",
+        "vaivora_weapon": "Rapid Growth",
+        "role": "Utility",
+        "combat_specialties": [
+          "Party Buffs",
+          "Utility - Party"
+        ]
+      }
+    ]
+  },
+  "summary": {
+    "total_classes_with_vaivora": 84,
+    "by_tree": {
+      "Swordsman": 18,
+      "Wizard": 18,
+      "Archer": 14,
+      "Cleric": 18,
+      "Scout": 16
+    },
+    "by_role": {
+      "Damage Dealer": 67,
+      "Utility": 13,
+      "Off-Healer": 2,
+      "Healer": 2
+    },
+    "source": "Aria Academy Notion database (ariacademy.notion.site)",
+    "scraped_at": "2026-07-11T21:17:03.049Z"
+  }
+}
