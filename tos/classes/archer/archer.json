@@ -1,0 +1,327 @@
+{
+  "class_name": "Archer",
+  "class_id": 3001,
+  "tree": "archer",
+  "skills": [
+    {
+      "id": 30001,
+      "name": "Multi Shot",
+      "description": "Quickly fires a number of arrows at the targeted area.",
+      "type": "attack",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 5.0,
+      "SP": 117,
+      "hits": 1,
+      "stance": "TwoHandBow BowAndShield BowAndArtefact BowAndDagger",
+      "property": "None",
+      "sfr": [
+        124,
+        199,
+        273,
+        348,
+        422,
+        497,
+        571,
+        646,
+        720,
+        795,
+        869,
+        944,
+        1018,
+        1093,
+        1167
+      ],
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10,
+          10
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Skill Factor: SkillFactor % x CaptionRatio"
+    },
+    {
+      "id": 30004,
+      "name": "Swift Step",
+      "description": "Allows you to attack while moving quickly. Increases the Evasion and Archer's Movement Speed when using basic attack and some skills.",
+      "type": "buff",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 60.0,
+      "SP": 196,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "2": [
+          0,
+          3,
+          6,
+          9,
+          12,
+          15,
+          18,
+          21,
+          24,
+          27,
+          30,
+          33,
+          36,
+          39,
+          42
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Increase Evasion by CaptionRatio2 %\nDuration: 30 minutes\nSkill that applies increase in Movement Speed\n- Oblique Shot\n- Twin Arrows\n- Critical Shot\n- Spiral Arrow\n- Spread Shot\n- Dark Judgement\n- Guided Shot"
+    },
+    {
+      "id": 30005,
+      "name": "Oblique Shot",
+      "description": "Fires an arrow that bounces off of the target to hit an adjacent enemy. Enemies hit by Oblique Shot have a chance of becoming afflicted with Slow.",
+      "type": "attack",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 1.0,
+      "SP": 11,
+      "hits": 1,
+      "stance": "TwoHandBow BowAndShield BowAndArtefact BowAndDagger Musket TwoHandCannon",
+      "property": "None",
+      "sfr": [
+        1491,
+        1754,
+        2017,
+        2281,
+        2544,
+        2807,
+        3070,
+        3334,
+        3597,
+        3860,
+        4124,
+        4387,
+        4650,
+        4914,
+        5177
+      ],
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50,
+          50
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Skill Factor: SkillFactor %\n[Slow] Chance: CaptionRatio %\n[Slow] Duration: 7 seconds"
+    },
+    {
+      "id": 30007,
+      "name": "Twin Arrow",
+      "description": "Shoot 2 arrows to enemy at once. Damage +50% to enemies with cloth armor.",
+      "type": "attack",
+      "max_lv": 5,
+      "OH": 3,
+      "CD": 15.0,
+      "SP": 56,
+      "hits": 2,
+      "stance": "TwoHandBow BowAndShield BowAndArtefact BowAndDagger",
+      "property": "None",
+      "sfr": [
+        626,
+        1001,
+        1377,
+        1752,
+        2127,
+        2503,
+        2878,
+        3254,
+        3629,
+        4004,
+        4380,
+        4755,
+        5131,
+        5506,
+        5881
+      ],
+      "skillsr": null,
+      "captionratio": null,
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Skill Factor: SkillFactor % x 2"
+    },
+    {
+      "id": 30008,
+      "name": "Concentration",
+      "description": "Concentrate to momentarily increase your critical rate.",
+      "type": "buff",
+      "max_lv": 5,
+      "OH": 0,
+      "CD": 60.0,
+      "SP": 196,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12,
+          14,
+          16,
+          18,
+          20,
+          22,
+          24,
+          26,
+          28
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Critical Rate + CaptionRatio %\nDuration: 30 minutes"
+    },
+    {
+      "id": 30009,
+      "name": "Leap",
+      "description": "Perform a backward leap. You are immune to damage while leaping and you are no longer in combat state after you land.",
+      "type": "buff",
+      "max_lv": 1,
+      "OH": 0,
+      "CD": 15.0,
+      "SP": 45,
+      "hits": null,
+      "stance": "All",
+      "property": "None",
+      "sfr": null,
+      "skillsr": null,
+      "captionratio": {
+        "1": [
+          175,
+          183,
+          192,
+          201,
+          210,
+          219,
+          227,
+          236,
+          245,
+          254,
+          263
+        ]
+      },
+      "captiontime": null,
+      "def_ignore": null,
+      "effect_text": "Leap range: CaptionRatio"
+    }
+  ],
+  "attributes": [
+    {
+      "id": 301001,
+      "name": "Multi Shot: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the skill factor of [Multi Shot] by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 301008,
+      "name": "Oblique Shot: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the skill factor of [Oblique Shot] by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 301012,
+      "name": "Twin Arrows: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases the skill factor of [Twin Arrow] by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 301024,
+      "name": "Swift Step: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases [Swift Step]'s evasion increasing effects by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 301025,
+      "name": "Concentration: Enhance",
+      "max_lv": 100,
+      "category": "enhance",
+      "description": "* Increases [Concentration]'s critical rate increasing effects by 0.5% per attribute level\n\n* +10% added increase at maximum level"
+    },
+    {
+      "id": 301026,
+      "name": "[Arts] Leap: Dexterity",
+      "max_lv": 1,
+      "category": "arts_behavior",
+      "description": "* Reduces the cooldown of [Leap] by 5 seconds\n\n* Increases Movement Speed by 10-20 for 3 seconds after using [Leap]"
+    },
+    {
+      "id": 301027,
+      "name": "[Arts] Multi Shot: Enhanced Upgrade",
+      "max_lv": 30,
+      "category": "arts_upgrade",
+      "description": "* Increases the Skill Factor of [Multi Shot] by 1.25% per attribute level"
+    },
+    {
+      "id": 301028,
+      "name": "[Arts] Oblique Shot: Enhanced Upgrade",
+      "max_lv": 30,
+      "category": "arts_upgrade",
+      "description": "* Increases the Skill Factor of [Oblique Shot] by 1.25% per attribute level"
+    },
+    {
+      "id": 301029,
+      "name": "[Arts] Twin Arrow: Enhanced Upgrade",
+      "max_lv": 30,
+      "category": "arts_upgrade",
+      "description": "* Increases the Skill Factor of [Twin Arrow] by 1.25% per attribute level"
+    },
+    {
+      "id": 301030,
+      "name": "Concentration: Hawkeye",
+      "max_lv": 1,
+      "category": "modifier",
+      "description": "* Remove increase Critical Rate effect of [Concentration]\n\n* Duration changed to 5 seconds\n\n* Enemy can not evade during the buff duration"
+    }
+  ]
+}
