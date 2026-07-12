@@ -1,13 +1,14 @@
 ---
 name: ffxiv-rotation-grapher
 display_name: FFXIV Rotation Grapher
-description: "Model FFXIV job rotations and produce DPS visualizations (scatter plots, box-and-whisker, cumulative potency timelines). Activate when user asks to graph, visualize, model, simulate, or compare FFXIV job DPS, rotations, potency timelines, or damage distributions. Also activates for questions about GCD clipping losses, DoT uptime, burst windows, or level-sync scaling."
+description: "Model FFXIV job rotations and produce DPS visualizations (scatter plots, box-and-whisker, cumulative potency timelines, FFLogs-style DPS-over-time curves). Uses web_search to contextualize stat expectations at target ilvl before modeling. Activate when user asks to graph, visualize, model, simulate, or compare FFXIV job DPS, rotations, potency timelines, or damage distributions. Also activates for questions about GCD clipping losses, DoT uptime, burst windows, level-sync scaling, or substat tier comparisons."
 icon: "⚔️"
-trigger: FFXIV graph scatter DPS rotation model job comparison potency timeline visualization box whisker burst window GCD clip DoT uptime level sync
+trigger: FFXIV graph scatter DPS rotation model job comparison potency timeline visualization box whisker burst window GCD clip DoT uptime level sync stat tier BiS fresh substat
 patterns:
-  - {pattern: "\\bffxiv\\b.*(?:graph|chart|plot|scatter|visual)", confidence: 0.95}
+  - {pattern: "\\bffxiv\\b.*(?:graph|chart|plot|scatter|visual|model|sim)", confidence: 0.95}
   - {pattern: "\\b(?:brd|dnc|nin|war|drg|rpr|smn|blm|whm|sch|sge|ast|pld|drk|gnb|mnk|sam|mch|rdm|vpr|pct)\\b.*(?:dps|rotation|damage)", confidence: 0.85}
   - {pattern: "\\bpotency\\b.*(?:timeline|graph|scatter)", confidence: 0.90}
+  - {pattern: "\\b(?:bis|fresh|midrange|substat)\\b.*(?:dps|compare|tier|gap)", confidence: 0.85}
 inputs:
   - name: job
     description: "Primary job to model (3-letter abbreviation: WAR, BRD, NIN, etc.) or 'all' for full roster"
@@ -18,28 +19,36 @@ inputs:
     type: string
     required: false
   - name: fight_duration
-    description: "Fight length in seconds for the simulation"
+    description: "Fight length in seconds for the simulation (120 = short, 300 = mid, 540+ = savage/ultimate)"
     type: number
     default: 120
   - name: level
     description: "Level sync target (affects trait potency scaling). 90 or 100."
     type: number
     default: 100
+  - name: stat_tier
+    description: "'fresh' (crafted/normal raid), 'midrange' (mix of savage/tome), 'bis' (full best-in-slot), or 'all' for 3-tier comparison"
+    type: string
+    default: bis
   - name: boss_invuln_windows
     description: "Array of [start_sec, end_sec] pairs for boss invulnerability (the ONLY source of DoT/damage loss)"
     type: string
     required: false
   - name: output_format
-    description: "Visualization type: 'scatter', 'box', 'cumulative', 'all'"
+    description: "Visualization type: 'scatter', 'box', 'cumulative', 'fflogs_timeline', 'all'"
     type: string
     default: all
-tools: [url_fetch, run_python, file_read, file_write, open_in_session_tab]
+tools: [web_search, url_fetch, run_python, file_read, file_write, open_in_session_tab]
 depends-on: [highcharts, html_design]
 ---
 
 ## Overview
 
-Tests FFXIV rotation execution fidelity against the game's 2-minute cadence design. The skill calculates potency-per-second for a given rotation sequence, then measures how much is lost to encounter constraints (boss invulnerability, forced movement, burst window misalignment). It does NOT find optimal rotations — it quantifies the difference between rotation variants and measures distance from theoretical maximum. Uses job data and trait potency scaling from the `marbleperfume/destructo` public GitHub repo. Output validates whether a job's numbers meet DPS check thresholds and exposes where small potency differences compound over 7+ minute encounters.
+Tests FFXIV rotation execution fidelity against the game's 2-minute cadence design. The skill calculates potency-per-second for a given rotation sequence, then measures how much is lost to encounter constraints (boss invulnerability, forced movement, burst window misalignment). It does NOT find optimal rotations — it quantifies the difference between rotation variants and measures distance from theoretical maximum.
+
+Uses web_search to contextualize stat expectations at current ilvl BEFORE modeling, same pattern as the ToS DPS Modeler. This grounds the output in real BiS data rather than guessed stat totals.
+
+Uses job data and trait potency scaling from the `marbleperfume/destructo` public GitHub repo. Output validates whether a job's numbers meet DPS check thresholds and exposes where small potency differences compound over 7+ minute encounters.
 
 ## Data Source
 
@@ -51,6 +60,75 @@ All job data lives at: `https://raw.githubusercontent.com/marbleperfume/destruct
 - **Trait scaling**: `ffxiv_trait_potency_scaling.json` — contains pre_94/post_94 potency values, mastery chains, enhanced traits, conditional traits, classifications
 
 Role folders: `tank/`, `healer/`, `melee/`, `phys_ranged/`, `magic_ranged/`
+
+
+## Stat Formulas (Lv100)
+
+Constants: SUB = 420, DIV = 2780
+
+```python
+import math
+
+def crit_rate(crit_stat):
+    """Returns crit chance as decimal (e.g., 0.25 = 25%)"""
+    return (math.floor(200 * (crit_stat - 420) / 2780) + 50) / 1000
+
+def crit_multiplier(crit_stat):
+    """Returns crit damage multiplier (e.g., 1.60 = +60% on crit)"""
+    return (math.floor(200 * (crit_stat - 420) / 2780) + 1400) / 1000
+
+def det_multiplier(det_stat):
+    """Returns det multiplier (e.g., 1.043 = +4.3% flat)"""
+    return math.floor(140 * (det_stat - 420) / 2780 + 1000) / 1000
+
+def dh_rate(dh_stat):
+    """Returns direct hit chance as decimal (e.g., 0.32 = 32%)"""
+    return math.floor(550 * (dh_stat - 420) / 2780) / 1000
+
+def effective_gcd(base_gcd_ms, speed_stat):
+    """Returns GCD in seconds after speed stat applied"""
+    return math.floor(base_gcd_ms * (1000 + math.floor(130 * (420 - speed_stat) / 2780)) / 10000) / 100
+
+def expected_damage_multiplier(crit_stat, det_stat, dh_stat):
+    """Combined expected multiplier from all substats"""
+    cr = crit_rate(crit_stat)
+    cm = crit_multiplier(crit_stat)
+    det = det_multiplier(det_stat)
+    dhr = dh_rate(dh_stat)
+    # Expected value: (1-cr)*(1-dhr)*1 + cr*(1-dhr)*cm + (1-cr)*dhr*1.25 + cr*dhr*cm*1.25
+    # Simplified: det * (1 + cr*(cm-1)) * (1 + dhr*0.25)
+    return det * (1 + cr * (cm - 1)) * (1 + dhr * 0.25)
+```
+
+DH always deals +25% damage (fixed). Crit + DH = crit multiplier × 1.25.
+
+
+## 3-Tier Stat Framework
+
+### Why This Matters
+
+FFXIV substats create a ~21% DPS gap between fresh Lv100 and full BiS from substats alone (before main stat / weapon damage / ilvl differences, which add another ~30-40%). The model must contextualize which stat tier it's simulating — a rotation that "works" at BiS (enough crit to proc reliably, enough speed for alignment) may not function identically at fresh stats.
+
+### Tier Definitions
+
+| Tier | Source | ilvl | Typical Crit | Det | DH | Speed |
+|------|--------|------|-------------|-----|-----|-------|
+| Fresh | Crafted + normal raid | i710-720 | ~1800 | ~1600 | ~1200 | Varies |
+| Midrange | Mix savage + tome | i730-740 | ~2800 | ~2000 | ~1800 | Varies |
+| BiS | Full savage + upgraded tome | i750+ | ~3800-3900 | ~2300-2500 | ~2100-2300 | Job-specific |
+
+These are APPROXIMATE defaults. Step 0 (web search) overrides them with current patch-accurate values.
+
+### Expected Multipliers by Tier
+
+| Tier | Crit Rate | Crit Mult | Det Mult | DH Rate | Combined |
+|------|-----------|-----------|----------|---------|----------|
+| Fresh | ~14.9% | ~1.450 | ~1.060 | ~15.4% | ×1.18 |
+| Midrange | ~22.1% | ~1.521 | ~1.079 | ~27.3% | ×1.30 |
+| BiS | ~29.4% | ~1.594 | ~1.095 | ~37.2% | ×1.43 |
+
+**Gap: BiS deals ~21% more damage than Fresh from substats alone.**
+
 
 ## Critical Domain Rules
 
@@ -138,6 +216,8 @@ FFXIV has no "dead time" for DPS jobs. The GCD rolls continuously at the job's e
 ### Gear Does Not Change Rotation
 FFXIV gear is stat sticks with materia. There are no proc-based gear effects, no set bonuses that alter rotation, no weapon effects that add skills. Gear only changes the damage multiplier applied to potency — it never changes WHICH skills you press or WHEN. This means potency-per-second modeling is sufficient for relative job rankings without needing to model gear.
 
+**However**: gear DOES change the effective multiplier via substats. The 3-tier framework quantifies this. A BiS player with 29% crit at ×1.59 multiplier vs a fresh player at 15% crit and ×1.45 multiplier — same rotation, same potency timeline, ~21% different actual DPS from substats alone.
+
 ### Level Sync Scaling
 When `level` < 100, apply pre-94 potency values from the trait scaling JSON. Multi-tier mastery chains may have breakpoints at Lv84 and Lv94. Check the `level_breakpoint` field.
 
@@ -206,9 +286,54 @@ All 8 party members align their 120s bursts. During the ~20s window:
 
 Jobs that drift their burst outside this window lose the multiplicative benefit. A SAM firing Ogi Namikiri 5s after buffs expire loses ~10-15% on that hit.
 
-**For the model:** When comparing jobs, the "fair" comparison is aDPS (how much each job contributes personally). When evaluating a PARTY'S output, rDPS captures buff contribution. The scatter/box-whisker output should default to personal PPS but note the rDPS adjustment for buff jobs.
+**For the model:** When comparing jobs, the "fair" comparison is aDPS (how much each job contributes personally). When evaluating a PARTY's output, rDPS captures buff contribution. The scatter/box-whisker output should default to personal PPS but note the rDPS adjustment for buff jobs.
+
 
 ## Workflow
+
+### Step 0: Contextualize via Web Search (REQUIRED)
+
+Before modeling ANY job, establish stat context for the current patch:
+
+```python
+# Pull current BiS stat totals for the job
+web_search(query=f"FFXIV {JOB} BiS {PATCH} stats materia melds icy-veins OR thebalanceffxiv 2024 2025")
+
+# For ilvl context and weapon damage
+web_search(query=f"FFXIV {PATCH} best in slot item level savage tome gear")
+
+# For specific speed tier if job uses speed alignment
+web_search(query=f"FFXIV {JOB} GCD tier skill speed {PATCH}")
+```
+
+Then fetch the relevant icy-veins or thebalanceffxiv page with `url_fetch` to get exact stat totals.
+
+**Extract and structure into 3 tiers:**
+- **Fresh:** Crafted HQ + normal raid drops (i710-720 range). Minimal melds, random substats.
+- **Midrange:** Mix of savage drops + augmented tome (i730-740). Partial melds, decent but not optimized.
+- **BiS:** Full savage + augmented tome, all materia slots optimally melded to stat priority.
+
+**Required per tier:** Crit, Det, DH, Speed → convert to multipliers using formulas above.
+
+**Use discovered stats to derive:**
+```python
+# For each tier:
+tier_multiplier = expected_damage_multiplier(crit, det, dh)
+tier_gcd = effective_gcd(base_gcd_ms, speed)
+tier_crit_rate = crit_rate(crit)
+tier_dh_rate = dh_rate(dh)
+```
+
+**Fallback values** if web search fails (use as last resort only):
+
+| Tier | Crit | Det | DH | Speed |
+|------|------|-----|-----|-------|
+| Fresh | 1800 | 1600 | 1200 | 420 |
+| Midrange | 2800 | 2000 | 1800 | varies |
+| BiS | 3900 | 2400 | 2200 | varies |
+
+These are approximations — always prefer web-searched values.
+
 
 ### Step 1: Fetch Job Data
 - **Mode**: `deterministic`
@@ -232,8 +357,8 @@ Also fetch `ffxiv_trait_potency_scaling.json` for the level-adjusted potencies.
 ### Step 2: Build Rotation Model
 - **Mode**: `agentic`
 - **Tool**: `run_python`
-- **Input**: Job JSON + trait scaling JSON + `{{fight_duration}}` + `{{level}}` + `{{boss_invuln_windows}}`
-- **Output**: Array of damage events: `[{time_sec, skill_name, potency, type, is_crit_window}]`
+- **Input**: Job JSON + trait scaling JSON + `{{fight_duration}}` + `{{level}}` + `{{boss_invuln_windows}}` + stat tier data from Step 0
+- **Output**: Array of damage events: `[{time_sec, skill_name, potency, type, is_crit_window, guaranteed_crit, guaranteed_dh}]`
 - **Validate**: Total events > 0, timeline spans full fight duration, no impossible overlaps
 - **On failure**: Check for infinite loops in proc resolution; cap iterations
 
@@ -248,28 +373,91 @@ The rotation model must:
 8. For BLM: model Ley Lines as a haste phase (15% reduction to both cast and recast for 30s every 90s)
 9. For BLM: track Astral Fire/Umbral Ice state — fire spells get 1.8x damage multiplier in AF3
 10. For comparison mode: run both `{{job}}` and `{{comparison_job}}` with identical fight parameters
+11. **NEW:** For each damage event, resolve crit/DH stochastically using tier-appropriate rates (except guaranteed crit/DH skills which always proc)
+12. **NEW:** Convert potency to damage units: `damage = potency * stat_multiplier * (crit_roll * dh_roll)` where crit_roll and dh_roll are per-hit random draws
 
 ### Step 3: Run Monte Carlo (if proc-based job)
 - **Mode**: `deterministic`
 - **Tool**: `run_python`
 - **Input**: Rotation model from Step 2, iteration count (1000)
-- **Output**: Distribution of total potency values + per-event timing arrays for all iterations
-- **Validate**: Standard deviation is non-zero for proc jobs; deterministic jobs should have σ ≈ 0
+- **Output**: Distribution of total damage values + per-event timing arrays for all iterations
+- **Validate**: Standard deviation is non-zero for proc jobs; deterministic jobs should have σ ≈ 0 for potency (but nonzero for damage due to crit/DH variance)
 - **On failure**: Check RNG seeding; ensure proc rates match wiki values
+
+**NEW: For stat_tier='all', run the entire sim 3 times** (one per tier) with different stat multipliers. Each tier produces its own distribution.
 
 ### Step 4: Generate Visualization
 - **Mode**: `agentic`
 - **Tool**: `run_python` + `file_write`
-- **Input**: Simulation results + `{{output_format}}`
+- **Input**: Simulation results + `{{output_format}}` + stat tier data
 - **Output**: HTML file with Highcharts visualization(s)
 - **Validate**: HTML file exists and contains valid Highcharts configuration
 - **On failure**: Check that Highcharts is loaded from `/vendor/highcharts/`; verify container divs have fixed heights
 
 Visualization types:
-- **scatter**: X = time (sec), Y = potency per hit. Color-code by skill type (GCD/oGCD/DoT). Mark burst windows with plotBands. Mark boss invuln with gray bands. For BLM, marker X-width should reflect actual cast time (wide markers for Fire IV, narrow for instants).
-- **box**: Horizontal box-and-whisker ranked by aDPS (like FFLogs zone statistics). Jobs as Y-axis categories, PPS as X-axis. Shows median, IQR, whiskers, outliers. Color-code by job role.
-- **cumulative**: Line chart of cumulative potency over time. Shows burst ramp and sustain phases. DoT contribution is a stacked area beneath.
-- **all**: Dashboard with all three charts in a 2x2 grid.
+
+#### scatter
+X = time (sec), Y = damage per hit. Color-code by skill type (GCD/oGCD/DoT). Mark burst windows with plotBands (light gold for 120s windows). Mark boss invuln with gray bands. For BLM, marker X-width should reflect actual cast time (wide markers for Fire IV, narrow for instants).
+
+**Multi-tier mode:** If `stat_tier='all'`, overlay 3 scatter series (one per tier, different opacity or separate subplot rows).
+
+#### box
+Horizontal box-and-whisker ranked by DPS. Jobs as Y-axis categories, DPS as X-axis. Shows median, IQR, whiskers, outliers. Color-code by job role (blue=tank, green=healer, red=melee, orange=phys ranged, purple=magic ranged). If comparing tiers, show grouped boxes (3 per job, one per tier).
+
+This is the FFLogs zone-statistics style — the signature chart for "where does this job rank."
+
+#### cumulative
+Line chart of cumulative potency over time. Shows burst ramp and sustain phases. DoT contribution is a stacked area beneath.
+
+**Multi-tier mode:** Show 3 lines (one per tier) diverging as crit/DH variance accumulates.
+
+#### fflogs_timeline (NEW)
+**The FFLogs-style "DPS over time" chart for longer fights (300s+).**
+
+This is a smoothed line chart where:
+- X = fight time (seconds)
+- Y = **running-average DPS** (total damage so far / elapsed time)
+- Shows the characteristic FFLogs shape: high spike during opener (inflated DPS from burst cooldowns in first ~20s), rapid decay as the average normalizes, then subtle oscillation on 120s cycle as each burst window temporarily raises the average before it decays again.
+
+Implementation:
+```python
+# For each point in time t (sample every 0.5s):
+running_dps[t] = cumulative_damage_at_t / t
+
+# First 2s: spike to very high DPS (only opener hits counted, low denominator)
+# By 30s: decay from opener inflation
+# At 120s: small bump as 2nd burst fires
+# At 240s: smaller bump as 3rd burst fires
+# At 360s+: nearly flat — this IS the sustained DPS
+# At 540s+: convergence — variance between iterations narrows
+```
+
+**Visual features:**
+- Main line: median DPS over time (from Monte Carlo iterations)
+- Shaded band: p10–p90 range (shows variance narrowing over longer fights)
+- Dotted horizontal: final median DPS (the number you'd report)
+- For multi-tier: 3 lines + 3 bands, clearly labeled
+- For multi-job: separate colors per job
+
+**Why this matters for game design analysis:**
+- Shows exactly how much of FFLogs' "top DPS" is inflated by short kill times (opener hasn't decayed)
+- Demonstrates the 2-minute cycle's diminishing impact as fights lengthen
+- Reveals which jobs have front-loaded vs sustained DPS profiles
+- Quantifies the "kill time tax" — faster kills inflate DPS; slower kills converge to true sustained
+
+**Chart labeling:**
+- Title: "{JOB} DPS Over Time — {fight_duration}s ({stat_tier})"
+- Y-axis: "DPS (running average)"
+- X-axis: "Fight Duration (s)"
+- Annotation at t=20s: "Opener inflation zone"
+- Annotation at each 120s mark: "Burst window"
+
+#### all
+Dashboard with 4 charts in a 2×2 grid:
+- Top-left: scatter (damage events)
+- Top-right: fflogs_timeline (running DPS)
+- Bottom-left: cumulative potency
+- Bottom-right: box-and-whisker (job comparison or tier comparison)
 
 ### Step 5: Present Output
 - **Mode**: `deterministic`
@@ -279,35 +467,45 @@ Visualization types:
 - **Validate**: File opens without error
 - **On failure**: Check file path; ensure HTML is well-formed
 
+
 ## Output
 
 An interactive Highcharts HTML visualization showing:
-- Scatter plot of damage events over fight duration (color = skill type, size = potency magnitude)
-- Box-and-whisker of PPS distribution ranked by job (horizontal, FFLogs-style)
-- Cumulative potency timeline with DoT contribution as stacked area
+- Scatter plot of damage events over fight duration (color = skill type, size = damage magnitude)
+- Box-and-whisker of DPS distribution ranked by job or tier (horizontal, FFLogs-style)
+- Cumulative potency/damage timeline with DoT contribution as stacked area
+- **FFLogs-style running-DPS timeline** showing opener decay, 2-min cycle bumps, and convergence
 - Boss invulnerability windows shown as gray shaded bands (the only dead zones)
-- Summary stats: mean PPS, median, p10/p90, burst phase PPS vs sustain phase PPS
+- Summary stats: mean DPS, median, p10/p90, burst phase DPS vs sustain phase DPS, opener-inflation ratio
+- **Stat tier comparison** when `stat_tier='all'`: same rotation, 3 different multiplier sets, showing the ~21% gap numerically
 
 ## Lessons Learned
 
 ### Do
+- **ALWAYS web_search first** — pull current BiS stats from icy-veins/thebalanceffxiv before running any sim
 - Always fetch BOTH the job JSON and trait scaling JSON — potency values in the job JSON may be base (pre-trait) values
 - Use `level_breakpoint` field to determine which potency tier applies at `{{level}}`
 - Model DoT ticks as first-class damage events in the scatter plot (same marker style as GCDs, just different color)
-- For box-and-whisker comparisons, normalize to "potency per second" so jobs with different GCD speeds are comparable
+- For box-and-whisker comparisons, normalize to "DPS" (accounting for stat multipliers) so the output matches what players actually see
 - Include the `classification` field from trait JSON to determine skill types for color-coding
 - Target output that approximates FFLogs aDPS distributions for validation — if relative rankings diverge significantly from FFLogs, the model has an error
 - Apply haste modifiers FIRST, then Skill Speed substats on top — they're multiplicative, not additive
 - For BLM: model the full AF/UI cycle with per-spell cast times, not a flat GCD
+- For the FFLogs timeline chart: sample running-average DPS every 0.5s for smooth curves
+- Use the p10-p90 band to show how variance narrows as fight duration increases
+- Label opener inflation clearly — it's a mathematical artifact of dividing by small t, not "better play"
 
 ### Don't
 - Never exclude DoT ticks from DPS calculations or visualizations — they are continuous damage, only paused by boss invuln
 - Never model "dead time" for FFXIV DPS jobs — the GCD is always rolling
-- Don't assume all jobs are proc-based — fixed-rotation jobs (WAR, DRG, SAM) need only 1 iteration
+- Don't assume all jobs are proc-based — fixed-rotation jobs (WAR, DRG, SAM) need only 1 iteration for potency (but still need Monte Carlo for crit/DH variance)
 - Don't use hardcoded potency values — always pull from the JSON, which reflects the latest patch data
 - Don't model gear effects — FFXIV gear has no procs or rotation-altering mechanics
 - Don't use 2.50s GCD for all jobs — NIN/MNK/SAM have fundamentally different GCD speeds
 - Don't use a flat GCD for BLM — it has per-spell cast times where Fire IV (2.8s), Despair (3.0s), and Flare Star (3.0s) are all longer than the GCD recast
+- Don't use fallback stat values if web search returned real numbers — always prefer live data
+- Don't skip the fflogs_timeline for fights > 180s — it's the most informative chart at longer durations
+- Don't display "DPS" without stating which stat tier it uses — always label
 
 ### Common Failures
 - **GitHub raw URL 404**: The repo structure may have changed. Fall back to checking the tree via `url_fetch` on the repo page.
@@ -317,6 +515,9 @@ An interactive Highcharts HTML visualization showing:
 - **Haste omission**: Forgetting to apply NIN/MNK/SAM haste results in ~15-20% lower GCD count, making these jobs appear much weaker than they are.
 - **BLM flat GCD error**: Modeling BLM with a uniform 2.5s tick vastly overestimates GCD count. The real cycle is ~32s for one full AF/UI rotation due to long cast times.
 - **BLM AF damage multiplier**: Fire spells deal 1.8x damage in Astral Fire III. Forgetting this makes BLM appear to deal half its actual damage.
+- **Opener inflation in short sims**: A 60s fight shows "higher DPS" than a 540s fight for the same job because opener cooldowns dominate the average. The fflogs_timeline chart makes this visible rather than hiding it.
+- **Stat tier confusion**: Always label which tier is being shown. A box plot comparing jobs must use the SAME stat tier for all jobs (typically BiS) for a fair comparison.
+- **Web search returning outdated patch data**: Include the patch number and year in queries. FFXIV patches every ~4 months. Data from 2+ patches ago may have different BiS.
 
 ### When to Ask the User
 - Which boss fight to model (determines invulnerability windows)
@@ -324,3 +525,22 @@ An interactive Highcharts HTML visualization showing:
 - For DNC specifically: whether to model partner synergy contribution or solo only
 - If comparing two jobs: whether to normalize for raid buff contribution or raw personal DPS
 - For BLM: whether to model standard rotation (6x Fire IV) or Paradox-heavy rotation (more instants, shorter AF cycles, viable at high SpS)
+- **NEW:** Which stat tier to model (if not specified, default to BiS but offer tier comparison)
+- **NEW:** Whether to show FFLogs-style timeline for fights < 180s (it's less informative on short fights where there's only 1 burst window)
+
+
+## Validation Checklist
+
+Before presenting results, verify:
+- [ ] Web search performed for stat context at current patch/ilvl
+- [ ] Stat tier stated explicitly in output labels
+- [ ] Stat multipliers derived from formulas (not guessed)
+- [ ] GCD matches job's haste tier + speed stat
+- [ ] DoT ticks modeled as continuous damage events
+- [ ] Burst windows marked at 0s, 120s, 240s, 360s...
+- [ ] Guaranteed crit/DH skills flagged and handled differently from random procs
+- [ ] Monte Carlo ran (even for deterministic jobs, for crit/DH variance)
+- [ ] FFLogs timeline shows opener decay for fights > 180s
+- [ ] Box plot uses same stat tier for all compared jobs
+- [ ] Summary stats include both burst-phase DPS and sustained DPS
+- [ ] No "DPS" number presented without tier label
