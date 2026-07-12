@@ -111,6 +111,44 @@ Effect data in: `tos/vaivora/vaivora_effects_{tree}.json`
 
 Model before/after Vaivora to quantify the delta at each gear tier.
 
+### Crit/Block Layer (Optional Emphasis)
+
+Enable when modeling against a specific monster with known combat stats, or when
+demonstrating the full compounding budget penalty. This is a multiplier layer on
+top of the base damage calc -- it does not change the rotation simulation.
+
+**Critical Hit:**
+```python
+# Pre-loaded function (already in run_python scope):
+crit_chance = compute_tos_crit_chance(player_crit_rate, enemy_crit_resist)
+# Formula: min(60, max(0, crit - cdef)^0.6)
+# Cap: 60% from formula. Flat class bonuses (Rogue Sneak Hit) bypass cap.
+# Diff ~920 = cap. Budget players often sit at 15-25%, endgame at 50-60%.
+crit_multiplier = 1 + (crit_chance / 100) * 0.5  # crits deal +50% damage
+```
+
+**Block:**
+```python
+# If monster has Block stat and player lacks Block Penetration:
+# Blocked hits deal 0.75x damage (25% penalty)
+block_rate = max(0, enemy_block - player_block_pen)  # simplified
+block_penalty = 1 - (block_rate_chance * 0.25)  # effective multiplier
+```
+
+**Combined budget penalty example (Lv430 CM, worst case):**
+- Effective ATK after DEF: 22% (ATK-DEF wall)
+- x0.75 (no Block Pen vs blocking mob)
+- x1.12 crit mult (budget 25% crit vs endgame x1.30 at 60% crit)
+- = ~18.5% of theoretical SFR damage actually lands
+
+**When to enable:**
+- Monster data includes acc/eva/crit/cdef/blk/blk_pen stats
+- User specifically asks about crit scaling or "why does my damage feel low"
+- Modeling a named boss (Zmei, Kepari, etc.) where stats are scraped/known
+
+**When to skip:** Generic tier comparison where the emphasis is on ATK-DEF wall
+and SP economy. Crit/Block adds precision but the core argument holds without it.
+
 
 ## Workflow
 
@@ -228,6 +266,15 @@ marbleperfume/destructo (public repo)
 |   |- tos_vaivora_database.json  -- Class index (85 entries, no effects)
 |   |- tos_gear_system_context.md -- Gear to ATK calculation guide
 |   |- tos_rebuild_combat_system.md
+|   |- vaivora/
+|   |   |- vaivora_effects_swordsman.json (19/19)
+|   |   |- vaivora_effects_wizard.json (17/17, Alchemist excluded - shop class)
+|   |   |- vaivora_effects_archer.json (15/15)
+|   |   |- vaivora_effects_cleric.json (17/17, Pardoner excluded - shop class)
+|   |   |- vaivora_effects_scout.json (16/16, Squire excluded - shop class)
+|   |   |- vaivora_effects_common.json (5 non-class-restricted)
+|   |   |- screenshots/ (raw Notion source images)
+|   |- (shop classes excluded from combat modeling: Alchemist, Pardoner, Squire)
 ```
 
 Access raw files: `https://raw.githubusercontent.com/marbleperfume/destructo/main/tos/...`
