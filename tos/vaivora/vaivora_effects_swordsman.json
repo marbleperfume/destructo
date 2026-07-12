@@ -1,0 +1,529 @@
+{
+  "system": "vaivora_effects",
+  "tree": "swordsman",
+  "game": "Tree of Savior",
+  "patch": "Episode 14+",
+  "source": "User Notion database",
+  "description": "Vaivora weapon effect data for all Swordsman tree classes. Level 1 = base Vaivora, Level 4 = max enhancement.",
+  "design_patterns": {
+    "linear_proficiency": "Buffs existing rotation without changing rotation shape. Pure damage amplification or CD reduction.",
+    "gap_filling": "Adds damage sources during CD gaps, converts downtime actions into damage, or creates reactive/counter mechanics."
+  },
+  "entries": {
+    "Murmillo": {
+      "vaivora_name": "Arena",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Murmillo skill level +1 (except Cassis Crista and Sprint)"
+        ],
+        "passive_bonuses": [
+          "Decreases penalty of Cassis Crista (Movement Speed 5->3, Evasion 25%->12.5%)"
+        ],
+        "proc_mechanic": {
+          "name": "Arena",
+          "trigger": "After casting Frenzied Burst",
+          "duration": "Half of Frenzied Burst cooldown (maintained until next Arena)",
+          "effects": [
+            "Final damage of Murmillo attack skills +30% inside Arena",
+            "Enemies outside Arena get [Fugitivo] debuff for 10s (not caster/monster)"
+          ]
+        },
+        "fugitivo_debuff": {
+          "movement_speed": "-10",
+          "final_damage_at_attack": "-10%",
+          "evasion_and_block": "-50%"
+        }
+      },
+      "level_4_effect": {
+        "description": "2 Apparitions are summoned when enemy is hit by Headbutt and they cast Butterfly to the enemy (Cooldown 30 seconds). Doesn't cast when [Headbutt: Emperor's Bane] attribute is activated."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Buffs existing rotation (+30% FD inside zone) without changing rotation shape. Apparitions add passive damage."
+      }
+    },
+    "Templar": {
+      "vaivora_name": "Assemble",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Assemble",
+          "trigger": "Flag of Morale cast",
+          "effects": [
+            "Enemies within range stunned for 1.5 seconds",
+            "Stamina of party members in range recovered by 20% when Flag of Vitality is cast",
+            "Party members in Flag of Vitality range become immune to removable debuff",
+            "Max 10 targets dragged toward flag for 3 seconds when Flag of Revenge is cast (1 second in PVP arena)"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Final Damage of Templar Skill increases +30%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Utility/support Vaivora - stun, party sustain, CC. Level 4 is flat FD increase."
+      }
+    },
+    "Matador": {
+      "vaivora_name": "Banderilla",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Matador skill level +1"
+        ],
+        "passive_bonuses": [
+          "Decreases Cooldown of Ole by 10 seconds",
+          "Decreases Cooldown of Capote by 10 seconds"
+        ],
+        "proc_mechanic": {
+          "name": "Banderilla",
+          "trigger": "Casting Ole or Capote skill",
+          "stack_per_trigger": 1,
+          "max_stacks": 3,
+          "buff_duration": "5 seconds",
+          "on_activation": {
+            "name": "Impalement",
+            "trigger": "Boss monster or enemy character uses attack skill within 150 range during buff",
+            "consumes": "1 stack of buff",
+            "effects": [
+              "Continual damage of Pierce property per every 1 second",
+              "Skill factor is 20% of Paso Doble at current level",
+              "Number of Continual damage strikes per debuff stack +1",
+              "Decreases damage received from debuff target by 6% per stack",
+              "Decreases Movement Speed by 4 per stack of debuff",
+              "Duration: 10 seconds, Max 3 stacks"
+            ]
+          }
+        }
+      },
+      "level_4_effect": {
+        "description": "Faena Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Reactive counter mechanic - DoT damage triggers from enemy actions during buff window. Fills gaps with passive Pierce damage."
+      },
+      "notes": "When Impalement is applied to a character, spear stabbing effect will show every tick"
+    },
+    "Nak Muay": {
+      "vaivora_name": "Boreas",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Nak Muay skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Boreas",
+          "trigger": "Casting Nak Muay attack skill",
+          "stack_per_trigger": 1,
+          "duration": "30 seconds",
+          "max_stacks": 12,
+          "on_max_stacks": {
+            "name": "Payakaroon",
+            "trigger": "Cast [Payakaroon] when casting Ram Muay at 12 buff stacks",
+            "effects": [
+              "10 consecutive hits with Strike damage to enemies in front",
+              "Total Skill Factor: sum of all Ram Muay attack skills",
+              "AoE Attack Ratio 10",
+              "Damage received during casting decreases by 70%",
+              "Immune to Knockback and Knockdown"
+            ]
+          }
+        }
+      },
+      "level_4_effect": {
+        "description": "Te Kha, Sok Chiang, Te Trong Skill Factor 30% increased finally"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Stack counter builds toward big burst (Payakaroon). Rewards sustained rotation execution with a massive finisher. Level 4 buffs core rotation skills directly."
+      }
+    },
+    "Luchador": {
+      "vaivora_name": "Doble Attaque",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Lucha De Silla skill level +3",
+          "Golpear skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Especial",
+          "trigger": "When enemy is hit by Lucha De Silla, Luchador master appears and casts [Especial]",
+          "effects": [
+            "Luchador master charges to enemy, gives damage at approach (hits once)",
+            "Attacks twice by swinging arm",
+            "AoE damage by jumping in the air (hits 3 times)",
+            "Skill factor of Especial = 100% of current Lucha De Silla single hit",
+            "Hits total 6 times"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Golpear Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Auto-summon companion that repeats Lucha De Silla damage. 6 extra hits on trigger = pure damage amplification."
+      }
+    },
+    "Highlander": {
+      "vaivora_name": "Dual Sword",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Crosscut Skill Level +3",
+          "Skyliner Skill Level +2"
+        ],
+        "passive_bonuses": [
+          "Cross Guard Block Rate increase effect +100%"
+        ],
+        "proc_mechanic": {
+          "name": "Dual Sword",
+          "trigger": "Cross Guard is cast",
+          "effects": [
+            "Buff activated for 3 seconds while Cross Guard is cast",
+            "Maximum duration of Cross Guard during buff is changed to 3 seconds",
+            "Resisting all removable status ailments during buff",
+            "Cast [Reversal Slash] when succeed in Blocking during Buff"
+          ],
+          "reversal_slash": {
+            "trigger": "Activated by enemy attack within 200 distance of the front",
+            "restrictions": "Cannot activate at [Magic Circle], [Continual AoE] skills",
+            "effects": [
+              "Charge at the attacker",
+              "Divides Crosscut's skill factor of the current level * 200% into 4 times and hit"
+            ]
+          }
+        }
+      },
+      "level_4_effect": {
+        "description": "Moulinet Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Reactive counter mechanic - blocking triggers Reversal Slash (200% Crosscut SFR / 4 hits). Turns defensive skill into offensive window."
+      }
+    },
+    "Rodelero": {
+      "vaivora_name": "Escudo Espada",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Rodelero skill level +1",
+          "Montano skill level +2"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Escudo Espada",
+          "trigger": "Casting Montano",
+          "effects": [
+            "Additionally hit [Escudo Espada] to 20 enemies in front when casting Montano",
+            "Enemy hit becomes afflicted with [Unbalanced] for 3 seconds (Except boss monster)",
+            "Skill factor equal to current level Montano"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Shooting Star Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Appends extra hit to Montano at same SFR. Pure damage multiplier on existing rotation."
+      }
+    },
+    "Blossom Blader": {
+      "vaivora_name": "Florescence",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Blossom Slash Skill Level +2"
+        ],
+        "passive_bonuses": [
+          "Blossom Slash cooldown reduced by 15 seconds"
+        ],
+        "proc_mechanic": {
+          "name": "Florescence",
+          "trigger": "Using Blossom Slash",
+          "effects": [
+            "Consecutively damages up to 4 enemies around the player"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Control Blade Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "CD reduction + AoE splash on Blossom Slash. Increases uptime of core skill."
+      }
+    },
+    "Lancer": {
+      "vaivora_name": "Grind",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Quintain Skill level +3"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Grind",
+          "trigger": "When Crush is used",
+          "effects": [
+            "Use Quintain of the current level"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Joust Cooldown -10 seconds. Summon mounted troops and give damage to the nearby range when casting Joust. Skill factor = Gigante Marcha at current level, Number of hits: 10, Maximum Target: 10. Skill Factor changed to 50% of Gigante Marcha in PVP area."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Appends Quintain to Crush cast. Level 4 adds mounted troop summon on Joust = extra damage sources on existing rotation."
+      }
+    },
+    "Dragoon": {
+      "vaivora_name": "Halberd",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Dragoon Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Halberd",
+          "trigger": "Using Dragoon skills against Large/Boss monsters",
+          "effects": [
+            "Dragoon skill increases Final damage against Large/Boss monsters by 15%",
+            "Applies debuff for 5 seconds when accurately hits Boss monsters with Dethrone",
+            "Reduces damage received from target under debuff by 15%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Throw Halberd around the designated range 4 times when Dragon Fall is cast. Halberd Skill Factor = 40% of current level Dragon Fall. Halberd AoE: 40, Maximum Target: 10."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "+15% FD against bosses (always-on for boss content). Level 4 adds AoE hits on Dragon Fall. Pure amplification."
+      }
+    },
+    "Hoplite": {
+      "vaivora_name": "Javelin",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Hoplite skill level +1",
+          "Spear Throw skill level +2"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Javelin",
+          "trigger": "Casting Spear Throw",
+          "effects": [
+            "Obtain 1 [Javelin] buff stack when casting Spear Throw",
+            "Maximum 3 stacks, Duration: 25 seconds",
+            "Throw Javelin to a single target within 250 distance by consuming 1 buff stack when giving basic attack",
+            "Skill factor of Javelin = current level Spear Throw",
+            "Number of hits: 6 times"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Pierce Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Converts basic attacks into 6-hit Javelin throws using stacks from Spear Throw. Fills gaps between skill CDs with basic attack procs."
+      }
+    },
+    "Fencer": {
+      "vaivora_name": "Leventador",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Fencer skill level +1"
+        ],
+        "passive_bonuses": [
+          "Reduces cooldown of Sept Etoiles by 5 seconds",
+          "Reduces cooldown of Fleche by 10 seconds"
+        ],
+        "proc_mechanic": null
+      },
+      "level_4_effect": {
+        "description": "Activates Leventador when casting Balestra Fente. Hit the target within the passing range 10 times (Pierce property). Leventador Skill Factor: 10% of current level Balestra Fente. Maximum target: 10."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "CD reduction on core skills + Level 4 adds extra hits on Balestra Fente. Tightens rotation without changing structure."
+      }
+    },
+    "Cataphract": {
+      "vaivora_name": "Matchless",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Cataphract skill level +1"
+        ],
+        "passive_bonuses": [
+          "Range of Rush skill +100%"
+        ],
+        "proc_mechanic": {
+          "name": "Matchless",
+          "trigger": "After Rush channeling",
+          "effects": [
+            "Cast additional 2 attacks 3 seconds after the Rush channeling (Slash property)",
+            "5 hits per 1 additional attack",
+            "Skill factor equal to Rush of current level",
+            "AoE Attack Ratio of additional attack: 20",
+            "Additional Attack is not considered as channeling/casting"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Doom Spike Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Adds 2×5 hits after Rush channel ends (while you can already cast other skills). Fills the post-Rush gap with free damage."
+      }
+    },
+    "Barbarian": {
+      "vaivora_name": "Pounding Rage",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Barbarian skill level +1"
+        ],
+        "passive_bonuses": [
+          "Warcry range increases to 200"
+        ],
+        "proc_mechanic": {
+          "name": "Pounding Rage",
+          "trigger": "When casting Warcry",
+          "effects": [
+            "Attack by the main weapon type against the target within the range",
+            "Skill Factor: [Skill level] * 906%, Number of hits: 3"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Damage increase per Frenzy stack +0.5%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Appends 3-hit attack to Warcry. Level 4 buffs Frenzy scaling. Straightforward amplification."
+      }
+    },
+    "Retiarius": {
+      "vaivora_name": "Rete Shooter",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Retiarius skill level +1",
+          "Throw Rete skill level +2"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Rete Shooter",
+          "trigger": "Using the first overheat of Trident Finish",
+          "effects": [
+            "Applies Skill Rete debuff of current level"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Blandir Cadena Cooldown -25 seconds"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Auto-applies net debuff on Trident Finish + CD reduction on Blandir Cadena. Streamlines rotation."
+      }
+    },
+    "Hackapell": {
+      "vaivora_name": "Saber",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Hackapell Skill Level +1"
+        ],
+        "passive_bonuses": [
+          "Skarphuggning Skill Damage +100%",
+          "Grind Cutter Skill Damage +100%"
+        ],
+        "proc_mechanic": null
+      },
+      "level_4_effect": {
+        "description": "Rush forward when Infinite Slash is cast and cast Skarphuggning twice in haste. Does not rush forward when distance from target is less than 100. Skarphuggning cast by this does not receive Saber's skill damage increase effect."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "+100% skill damage on two core skills + Level 4 adds free Skarphuggning casts on Infinite Slash. Direct amplification."
+      }
+    },
+    "Peltasta": {
+      "vaivora_name": "Serrated Shield",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Serrated Shield",
+          "trigger": "Shield Lob accurately hits",
+          "effects": [
+            "Apply [Serrated Wound] and [Serrated Wound: Reduce Movement Speed] debuff on target for 4 seconds",
+            "Debuff duration increases by 4 seconds when target under [Serrated Wound] is hit by Shield Lob",
+            "[Serrated Wound]: Gives 25% of damage inflicted by Shield Lob every 1 second",
+            "[Serrated Wound: Reduce Movement Speed]: Movement Speed -20"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Only 80% of Guardian's skill damage decrease rate applied. Duration increase +100%. Does not stack with Skiaclipse Shield."
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "DoT mechanic - Shield Lob applies bleed that ticks 25% of hit damage every second. Fills gaps with sustained damage."
+      }
+    },
+    "Shenji": {
+      "vaivora_name": "The Dragon and The Tiger",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Shenji skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "The Dragon and The Tiger",
+          "trigger": "Stance Shift",
+          "effects": [
+            "Enhance a certain property skill according to stance selected by [Stance Shift]",
+            "[Speed] stance: Pierce skill damage +10%",
+            "[Range] stance: Slash skill damage +10%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Shenji Attack Skill Final Damage +20%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Stance-based skill damage buff + flat FD increase at Level 4. Passive amplification."
+      }
+    },
+    "Doppelsoeldner": {
+      "vaivora_name": "Wedge Blast",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Punish skill level +3"
+        ],
+        "passive_bonuses": [
+          "Cooldown of Punish changed to 20 seconds",
+          "Changes Punish to Slash property",
+          "Changes Punish casting time to 1 second",
+          "Removes Knockdown target and moving to the targeted enemy function from Punish",
+          "Changes Punish to 4 consecutive hits",
+          "Punish damages multiple enemies nearby",
+          "Maximum targets: 10"
+        ],
+        "proc_mechanic": null
+      },
+      "level_4_effect": {
+        "description": "Zwerchhau Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Completely reworks Punish into a spammable 4-hit AoE slash (20s CD, 1s cast). Removes knockdown penalty. Level 4 buffs Zwerchhau."
+      }
+    }
+  }
+}

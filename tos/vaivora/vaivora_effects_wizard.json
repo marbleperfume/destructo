@@ -1,0 +1,469 @@
+{
+  "system": "vaivora_effects",
+  "tree": "wizard",
+  "game": "Tree of Savior",
+  "patch": "Episode 14+",
+  "source": "User Notion database",
+  "description": "Vaivora weapon effect data for all Wizard tree classes. Level 1 = base Vaivora, Level 4 = max enhancement.",
+  "design_patterns": {
+    "linear_proficiency": "Buffs existing rotation without changing rotation shape. Pure damage amplification or CD reduction.",
+    "gap_filling": "Adds damage sources during CD gaps, creates persistent AoE, or generates passive proc damage."
+  },
+  "entries": {
+    "Warlock": {
+      "vaivora_name": "Demonische",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Warlock skill level +1",
+          "Invocation skill level +1"
+        ],
+        "passive_bonuses": [
+          "Max Evil Spirits +5 (to 15)"
+        ],
+        "proc_mechanic": {
+          "name": "Demonische",
+          "trigger": "Invocation spirit hits enemy",
+          "stack_per_trigger": 2,
+          "stack_note": "2 for high-level spirit (1 for low-level)",
+          "max_stacks": 10,
+          "on_max_stacks": {
+            "effect": "Auto-fires Dark damage",
+            "sfr_source": "200% of Invocation current level SFR",
+            "hits": 5,
+            "max_targets": 10
+          }
+        },
+        "additional_effects": [
+          "Demon Scratch Final Damage +100%",
+          "Demon Scratch has 50% chance to create Invocation Evil Spirit"
+        ]
+      },
+      "level_4_effect": {
+        "description": "Unknown - not yet provided"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Provides passive DPS during CD gaps via auto-firing Demonische proc AND accelerates spirit generation via Demon Scratch 50% spirit creation."
+      }
+    },
+    "Elementalist": {
+      "vaivora_name": "Annihilate",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Elementalist skill level +1"
+        ],
+        "passive_bonuses": [
+          "Annihilate effect added to Elemental Burst"
+        ],
+        "proc_mechanic": {
+          "name": "Annihilate",
+          "trigger": "Casting Elemental Burst",
+          "effects": [
+            "Fire Annihilate Ray to the front",
+            "Maximum number of targets 20, Number of hits 6",
+            "Cannot hit repeated against the same target",
+            "Property determined by highest skill-level sum: Fire (Fire Claw + Meteor), Ice (Hail + Blizzard Storm), Lightning (Electrocute + Lightning Orb)",
+            "Only calculated by invested skill points",
+            "Annihilate is not considered as casting",
+            "Annihilate Damage: 4% of current level Elemental Burst × Skill Level Sum"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Following effect applies according to the property of your highest Elementalist skill-level sum: Fire = Fire Claw FD +100%, Ice = Blizzard Storm FD +100%, Lightning = Lightning Orbs hit twice."
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Appends free Annihilate ray on Elemental Burst (not considered casting = can overlap). Damage scales with total invested skill levels, rewarding full Elementalist commitment."
+      }
+    },
+    "Psychokino": {
+      "vaivora_name": "Biased Gravity",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Psychokino skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Biased Gravity",
+          "trigger": "Casting Gravity Pole",
+          "effects": [
+            "Immune to Knockback, Knockdown while casting Gravity Pole",
+            "Strikes in fan shape range per every 1 second while casting Gravity Pole",
+            "Damages by 50% of Gravity Pole skill factor in current level",
+            "Pulls the target little per strike if target is monster",
+            "Additionally strikes in round range when Gravity Pole channeling is end",
+            "Hits 5 times with Gravity Pole skill factor of current level",
+            "Maximum targets: 20",
+            "Biased Gravity is not considered as channeling"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Psychic Pressure number of hits +1"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Turns Gravity Pole channel into an offensive AoE pull (fan strikes during + 5-hit burst at end). Not counted as channeling = doesn't lock out other actions."
+      }
+    },
+    "Featherfoot": {
+      "vaivora_name": "Blood Butterfly",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Blood Butterfly",
+          "trigger": "During [Curse of Blood] buff",
+          "effects": [
+            "Create a [Blood Butterfly's Territory] around yourself",
+            "Enemy within territory receives damage equal to skill factor of Ngadhundi every 2 seconds",
+            "Cooldown of Featherfoot skill decreases by 1 second when enemy within territory is defeated by your attack"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Plague Additional Damage Rate +10%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Creates persistent AoE damage zone during Curse of Blood. Passive Ngadhundi-level ticks every 2s + kill-based CD reduction. Classic gap-filler."
+      }
+    },
+    "Shadowmancer": {
+      "vaivora_name": "Diffuse Reflection",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Shadow Thorn Skill level +2",
+          "Number of consecutive hits of Shadow Thorn +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Diffuse Reflection",
+          "trigger": "Using Shadow Thorn",
+          "effects": [
+            "Shadow Thorn gives damage to maximum 5 targets nearby"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Shadow Condensation Cooldown -15 seconds"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Buffs Shadow Thorn (more hits, AoE splash) + reduces Shadow Condensation CD. Direct amplification without new mechanics."
+      }
+    },
+    "Sage": {
+      "vaivora_name": "Distortion",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Sage skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Distortion",
+          "trigger": "Casting Hole of Darkness / Using Micro Dimension",
+          "effects": [
+            "Apply [Distorted Space] debuff for 10 seconds on max 10 enemies within selected area when casting Hole of Darkness",
+            "Give Non-property magic damage to target under [Distorted Space] debuff within 400 range when using Micro Dimension",
+            "Divides 35% of Hole of Darkness at current level into 6 times and hit",
+            "Distortion is not judged as casting"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Ultimate Dimension Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Creates debuff on Hole of Darkness targets, then Micro Dimension triggers bonus hits (35% HoD SFR × 6) on debuffed targets. Cross-skill synergy fills gaps."
+      }
+    },
+    "Keraunos": {
+      "vaivora_name": "Electric Flow",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Keraunos skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Electric Flow",
+          "trigger": "Using Lightning Spear",
+          "effects": [
+            "Delete the effect that removes [Current] debuff of Lightning Spear",
+            "Fire additional Lightning Spear to 5 targets around the currently aimed target",
+            "Additionally fired Lightning Spear attacks a single target"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Increases Static Field Final damage by +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Removes [Current] removal penalty + AoE splash on Lightning Spear. Direct upgrade to existing skill behavior."
+      }
+    },
+    "Pyromancer": {
+      "vaivora_name": "Fire Bolt",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Fire Pillar Skill level +2"
+        ],
+        "passive_bonuses": [
+          "Fire Pillar Skill damage +100%"
+        ],
+        "proc_mechanic": {
+          "name": "Fire Bolt",
+          "trigger": "Fire Pillar active (nearby enemy)",
+          "effects": [
+            "Descend meteor to a random enemy nearby Fire Pillar",
+            "Meteor Fall cycle is equal to the cycle of Fire Pillar",
+            "The Meteor is considered as the same skill with Fire Pillar"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Flame Ground Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Fire Pillar passively drops meteors on nearby enemies at its tick rate. Free damage during other casts. Classic gap-filler."
+      }
+    },
+    "Cryomancer": {
+      "vaivora_name": "Icy Snow Bubble",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Frost Pillar skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Icy Snow Bubble",
+          "trigger": "Installing Frost Pillar",
+          "effects": [
+            "Create Icy Snow Bubble every 0.5 seconds when installing Frost Pillar",
+            "Damage of Icy Snow Bubble is equal to Frost Pillar",
+            "Icy Snow Bubble does not apply Freeze or Chill",
+            "This effect is not altered by item or skills related to casting"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Ice Bolt number of hits x2"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Frost Pillar passively spawns bubbles every 0.5s at pillar SFR. Persistent AoE during other casts. Similar pattern to Pyromancer's Fire Bolt."
+      }
+    },
+    "Necromancer": {
+      "vaivora_name": "Immortality",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Raise Dead skill level +1",
+          "Raise Skull Archer skill level +1",
+          "Raise Skull Mage skill level +1"
+        ],
+        "passive_bonuses": [
+          "Appearance and name of skeleton summons changed to Immortality",
+          "Basic attack of summoned monsters changed, skill attack added"
+        ],
+        "proc_mechanic": {
+          "name": "Immortality",
+          "trigger": "Summoning skeletons (passive behavior change)",
+          "summon_skills": {
+            "Revived Spearman": {
+              "skills": [
+                "Pierce (CD 15s)",
+                "Stabbing (CD 30s)"
+              ]
+            },
+            "Revived Archer": {
+              "skills": [
+                "Triple Arrow (CD 20s)"
+              ]
+            },
+            "Revived Wizard": {
+              "skills": [
+                "Energy Bolt (CD 8s)",
+                "[Arts] Shadow Condensation (CD 30s)"
+              ]
+            },
+            "Revived Elite Swordsman": {
+              "skills": [
+                "Zwerchhau (CD 30s)",
+                "Cyclone (CD 20s)"
+              ]
+            }
+          },
+          "notes": "Summon's skill is irrelevant to the character's skill. Necromancer Summon will be unsummoned when unequipping the item."
+        }
+      },
+      "level_4_effect": {
+        "description": "Increases the additional stat of Necromancer Summon (STR, INT, CON), Summoner's SPR +20%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Transforms basic-attack summons into skill-using AI companions. Summons deal damage independently during all dead time. Massive gap-fill for a summoner class."
+      }
+    },
+    "Bokor": {
+      "vaivora_name": "Lewa Advent",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Damballa Skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Lewa Advent",
+          "trigger": "Casting Damballa",
+          "effects": [
+            "Apply [Lewa Advent] for 5 seconds to target when casting Damballa",
+            "Number of Dark Force stacks during [Lewa Advent] debuff duration +1",
+            "Additionally hit target by 75% of Damballa Skill Factor × 4 times after [Lewa Advent] debuff duration",
+            "Damage of additional hit increases by 20% per debuff cast by Bokor applied to the target (Maximum 60%)"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Effigy Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Delayed burst after Damballa debuff expires (75% SFR × 4 hits, scaling with debuff count up to +60%). Rewards full debuff rotation before burst."
+      }
+    },
+    "Onmyoji": {
+      "vaivora_name": "Red Tiger Claw",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Howling White Tiger skill level +3"
+        ],
+        "passive_bonuses": [
+          "Howling White Tiger Number of hits +3"
+        ],
+        "proc_mechanic": {
+          "name": "Red Tiger Claw",
+          "trigger": "Howling White Tiger accurately hits",
+          "effects": [
+            "Apply weak debuff when Howling White Tiger accurately hits",
+            "Debuff duration: 5 seconds",
+            "Damage increased when the caster gives damage to the debuff target by Onmyoji skill by +100%",
+            "Debuff effect not applied when removing Red Tiger Claw item"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Wind Shikigami Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Howling White Tiger applies +100% damage debuff for 5s. All subsequent Onmyoji skills deal double damage in that window. Massive burst amplifier."
+      }
+    },
+    "Rune Caster": {
+      "vaivora_name": "Rune of Vigilance",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Rune Caster skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Rune of Vigilance",
+          "trigger": "Rune Caster skills / Rune of Rock",
+          "effects": [
+            "Changes [Rune Caster: Casting] buff to maximum 5 stacks",
+            "Damage by Rune caster skill per [Rune Caster: Casting] stack +20%",
+            "When 5 [Rune Caster: Casting] is stacked and Rune of Rock is cast, consume 3 stacks of [Rune Caster: Casting] and reset Cooldown of Rune of Rock"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Rune of Justice Cooldown -15 seconds"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Stack-based damage ramping (+20% per stack, up to 5) with CD reset mechanic on Rune of Rock at max stacks. Rewards continuous casting."
+      }
+    },
+    "Terramancer": {
+      "vaivora_name": "Stone-Slinger",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Stone Shower Skill Level +2"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Stone-Slinger",
+          "trigger": "Sand Blast hits / Sand Blast critical hit",
+          "effects": [
+            "Casts Stone Shower equal to caster's current level when critical hit occurs for Sand Blast",
+            "When it's not critically hit, Stone Shower is cast by 15% chance when Sand Blast is hit"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Horn of Golem number of hits +3"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Sand Blast triggers free Stone Shower casts (100% on crit, 15% otherwise). Generates bonus damage passively during normal rotation."
+      }
+    },
+    "Chronomancer": {
+      "vaivora_name": "Time Rush",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Quick Cast Skill Level +2"
+        ],
+        "passive_bonuses": [
+          "Skills Time Forward is applied +2"
+        ],
+        "proc_mechanic": {
+          "name": "Time Rush",
+          "trigger": "During Quick Cast",
+          "effects": [
+            "Damage dealt increased by Quick Cast skill level × 3.5% during Quick Cast"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Cast [Time Clutch] to the designated location when casting Slow. When casting an attack skill that shows its effect after casting is completely over, Slow Cooldown decreases as much as the skill's original casting time. Time Clutch: Non-property Magic Damage at designated 60 range. Skill Factor: Slow Skill level × 400% × 2 times. Maximum Target: 10. Silence Target for 2 seconds."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Quick Cast becomes a damage steroid (skill level × 3.5% bonus). Level 4 adds Time Clutch AoE on Slow + CD reduction mechanic. Utility class gains damage."
+      }
+    },
+    "Taoist": {
+      "vaivora_name": "Vigilant Charm",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Taoist skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Vigilant Charm",
+          "trigger": "Taoist Rank 1 skills",
+          "effects": [
+            "Apply Vigilant Charm effect to Taoist Rank 1 skills",
+            "Flame Radiation Charm: Number of hit x2",
+            "Creeping Death Charm: Range increases, Number of hits x2",
+            "Divine Punishment: Broad Strike constantly active, Damage in proportion to casting applied as maximum at all times, Number of hits x2",
+            "When Vigilant Charm activates, awakening effect maintains as much as the cooldown of the skill",
+            "Awakening effect of other skills is not activated during this awakening effect"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Following effects applied during the skill's awakening effect: Flame Radiation Charm = Increases Fire Charm Final Damage by 100%. Creeping Death Charm = Increases Snow Tempest Charm Final Damage by 100%. Divine Punishment = Increases Eradication Final Damage by 100%."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Doubles hits on all Rank 1 Taoist skills + activates permanent awakening during cooldown windows. Level 4 adds conditional +100% FD to paired skills. Massive amplification of existing kit."
+      }
+    }
+  }
+}
