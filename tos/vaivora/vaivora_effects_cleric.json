@@ -1,0 +1,448 @@
+{
+  "system": "vaivora_effects",
+  "tree": "cleric",
+  "game": "Tree of Savior",
+  "patch": "Episode 14+",
+  "source": "User Notion database",
+  "description": "Vaivora weapon effect data for Cleric tree classes.",
+  "design_patterns": {
+    "linear_proficiency": "Buffs existing rotation without changing shape.",
+    "gap_filling": "Adds damage sources during CD gaps or creates passive damage."
+  },
+  "entries": {
+    "Sadhu": {
+      "vaivora_name": "Agni",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Agni",
+          "trigger": "When Enira is cast",
+          "effects": [
+            "Emits fire to the front",
+            "Applies [Agni: Burn] debuff for 10 seconds",
+            "[Agni: Burn]: Continuous damage by 10% of total damage from Enira every 1 second",
+            "Damage received from caster of debuff increases by 20%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Moksha number of hits x2"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Enira applies 10s DoT (10%/s of hit damage) + 20% damage taken debuff. Persistent damage + amp."
+      }
+    },
+    "Oracle": {
+      "vaivora_name": "Aura",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Increase Oracle Skill Level +1"
+        ],
+        "passive_bonuses": [
+          "Foretell damage reduction +5%",
+          "Adds immunity to Knockback and Knockdown to Foretell"
+        ],
+        "proc_mechanic": null
+      },
+      "level_4_effect": {
+        "description": "Creates [Aura] when casting [Counter Spell: Punisher]. Gives damage every 1 second by SFR per 1 hit of Counter Spell: Punisher. Decreases damage received by you and ally in range by 35%. Consumes 5% SP every 2 seconds. Recovers 10% of max SP when attacking enemy with [Prophecy: Shock] (CD 30s)."
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Level 4 creates persistent Aura zone dealing Counter Spell damage per second. Autonomous AoE during other casts."
+      }
+    },
+    "Crusader": {
+      "vaivora_name": "Convict",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Crusader skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Convict",
+          "trigger": "Passive",
+          "effects": [
+            "Reduces cooldown of Holy Smash by 5 seconds",
+            "Reduces cooldown of Condemn by 10 seconds"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Apply buff for 30s when casting Sacred. Cast [Convict] and additionally hit front when Holy Smash is cast during buff. Convict Skill Factor is 20% of Sacred at current level. Max Target: 10."
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Level 4 appends Convict hit to Holy Smash during Sacred buff window."
+      }
+    },
+    "Zealot": {
+      "vaivora_name": "Conviction",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Immolation skill level +3"
+        ],
+        "passive_bonuses": [
+          "Increases range of Immolation by 25%"
+        ],
+        "proc_mechanic": {
+          "name": "Conviction",
+          "trigger": "Casting Immolation",
+          "effects": [
+            "Increases Duration of debuff according to target size (small: 2s, medium: 4s, large: 6s, extra large: 8s)",
+            "Duration of [Immolation: Melt Armor] increases to 20 seconds",
+            "Immolation debuff removed when unequipping Conviction"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Number of Emphatic Trust attacks +10. Emphatic Trust debuff removed when unequipping."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Size-based debuff duration scaling + longer Melt Armor. Enhances existing Immolation mechanic."
+      }
+    },
+    "Exorcist": {
+      "vaivora_name": "Desition",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Katadikazo Skill Level +2"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Desition",
+          "trigger": "Katadikazo is cast",
+          "effects": [
+            "Create Magic Circle at Katadikazo location",
+            "Duration: 20 seconds",
+            "When circle disappears, spear drops with 4 consecutive strikes to 20 enemies",
+            "Damage = 50% of Katadikazo SFR",
+            "Applies buff to party over magic circle",
+            "[Holy],[Fire] Magic Skill, [Strike] Physical Skill Damage to buff target +20%",
+            "Circle duration -1s when buff target casts [Holy],[Fire],[Strike] skills"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Rubric Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Delayed 4-hit burst when magic circle expires + party damage buff zone for 20s. Autonomous damage + support."
+      }
+    },
+    "Miko": {
+      "vaivora_name": "Ema",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Ema",
+          "trigger": "Casting Omikuji without Honor",
+          "effects": [
+            "When [Great Blessing: Honor] not drawn, [Great Blessing: Peace] applied for Omikuji duration",
+            "[Great Blessing: Peace]: Increases Attack by 2.5%",
+            "Omikuji cooldown reset when [Great Blessing: Honor] or [Great Blessing: Hope] not drawn",
+            "[Great Blessing: Peace] cannot be stacked",
+            "Omikuji cooldown cannot be reset in a row"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Casting time of Kagura changed to 15 seconds, buff applies when cancelled midway. Final damage increases in proportion to casting of Kagura +4~8%. Not altered by items or skills related to casting."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Guarantees useful buff from Omikuji (Peace fallback). Reduces RNG dependency."
+      }
+    },
+    "Kabbalist": {
+      "vaivora_name": "Longing",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Kabbalist Skill Level +1"
+        ],
+        "passive_bonuses": [
+          "Anagrama Final Damage +50%",
+          "Increases range of Nachash"
+        ],
+        "proc_mechanic": null
+      },
+      "level_4_effect": {
+        "description": "Adds 10% to decrease rate of Ein Sof's Cooldown by 10% (only applied to yourself). Changes recovery cycle of Ein Sof by 4 seconds."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "+50% FD on Anagrama + Ein Sof CD reduction. Direct amplification."
+      }
+    },
+    "Priest": {
+      "vaivora_name": "Mass Heal: Freeze",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Mass Heal skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Mass Heal: Cooling",
+          "trigger": "Using Mass Heal",
+          "effects": [
+            "Reduces cooldown of Mass Heal depending on [Heal: Overload] stacks",
+            "Reduces 1 second of cooldown per stack",
+            "All [Heal: Overload] stacks consumed"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Apply buff for 12s when casting Mass Heal. Automatically casts [Heal] to party members nearby in 150 range to yourself every 3 seconds during buff."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "CD reduction on Mass Heal via stack consumption + auto-Heal passive at Level 4."
+      }
+    },
+    "Dievdirbys": {
+      "vaivora_name": "Memory Leap",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Dievdirbys Skill Level +1",
+          "Statue of Goddess Vakarine Overheat +1"
+        ],
+        "passive_bonuses": [
+          "Duration of Statue increases to 2 min 30s",
+          "Cooldown of Statue increases to 3 minutes",
+          "Original Statue effect removed"
+        ],
+        "proc_mechanic": {
+          "name": "Memory Leap",
+          "trigger": "Interacting with installed Statue",
+          "effects": [
+            "Max 2 Statues can be installed",
+            "Move to other Statue on same map (created by same skill)",
+            "Move Cooldown 10 seconds",
+            "Cooldown of Memory Leap applied individually"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Block, Critical Resistance decrease effect added to Carve World Tree (Decrease Rate = Evasion). Increases Skill CD of targets struck by [Statue of Goddess Laima: Kancia]. Increases [Statue] overheat +1. During [Carve World Tree: Grieztas] duration, pulls enemy to magic circle."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Teleportation utility + crowd control. Support-focused, not damage."
+      }
+    },
+    "Plague Doctor": {
+      "vaivora_name": "Necrosis",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Incineration skill level +3"
+        ],
+        "passive_bonuses": [
+          "Pandemic skill range +60%"
+        ],
+        "proc_mechanic": {
+          "name": "Necrosis",
+          "trigger": "Casting Pandemic",
+          "effects": [
+            "Applies [Incineration], [Black Death Steam] debuff of current level",
+            "Applies [Immobility] debuff to monster for 4 seconds",
+            "Maximum targets: 20",
+            "Removes debuffs applied by Necrosis when unequipped"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Black Death Steam Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Pandemic auto-applies Incineration + Black Death Steam debuffs. Consolidates rotation steps."
+      }
+    },
+    "Inquisitor": {
+      "vaivora_name": "Outrage",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "God Smash Skill level +3"
+        ],
+        "passive_bonuses": [
+          "God Smash Range +100%",
+          "Number of Consecutive hits of God Smash +1"
+        ],
+        "proc_mechanic": {
+          "name": "Outrage",
+          "trigger": "Using God Smash",
+          "effects": [
+            "1 stack of Outrage buff per God Smash use",
+            "Duration: 8 seconds (Max. 3 stacks)",
+            "Character size increases with stacks",
+            "Magic damage received -50% when 3 stacks",
+            "Consume all stacks when using Ripper",
+            "With 3 stacks: Ripper skill damage for 5 seconds +30%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Ripper Cooldown -25 seconds"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Stack mechanic amplifies Ripper burst window (+30% with 3 stacks). Rewards repeated God Smash → Ripper cycle."
+      }
+    },
+    "Lama": {
+      "vaivora_name": "Principle of Emptiness",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Lama Skill Level +1"
+        ],
+        "passive_bonuses": [
+          "Final Damage of Lama's rank 2 skill +33%"
+        ],
+        "proc_mechanic": null
+      },
+      "level_4_effect": {
+        "description": "Muscle Pump activation chance +26%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "+33% FD on rank 2 skills + activation chance buff. Direct amplification."
+      }
+    },
+    "Paladin": {
+      "vaivora_name": "Protecting Grace",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Paladin skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Protecting Grace",
+          "trigger": "Casting Stone Skin",
+          "effects": [
+            "Apply Skin Stone buff for 15 seconds to party members within 100 range",
+            "Stone Skin applied = caster's current level Stone Skill",
+            "Increases damage of Party member with Stone Skin buff by +100%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Decreases Recovery cycle of Restoration by 50%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Party-wide Stone Skin application + 100% damage buff to buffed members. Support amplification."
+      }
+    },
+    "Chaplain": {
+      "vaivora_name": "Sacred Armor",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Sacred Armor",
+          "trigger": "Equipping",
+          "effects": [
+            "Binatio Duration changed to 30 minutes",
+            "Binatio buff removed when removing item"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Visible Talent Final Damage +100%. Buff removed when equipping item during Visible Talent."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Permanent Binatio uptime (30 min duration). Removes maintenance."
+      }
+    },
+    "Krivis": {
+      "vaivora_name": "Sacred Lightning",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Krivis skill level +1"
+        ],
+        "passive_bonuses": [
+          "Maximum [Brilliance] debuff stack changes to 60"
+        ],
+        "proc_mechanic": {
+          "name": "Sacred Lightning",
+          "trigger": "Zaibas accurate hit + 51+ Brilliance stacks",
+          "effects": [
+            "Apply 5 stacks of [Brilliance] to target when Zaibas is accurate",
+            "Effect activates with 51+ [Brilliance] stacks",
+            "Skill factor 150% of current level Piety",
+            "Number of consecutive hits 4",
+            "Consumes 50 debuff stacks when effect activates",
+            "[Arts] Zaibas: Catatumbo [Brilliance] stacks increases by 3 times when activated"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Zaibas Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Brilliance stacking triggers burst (150% Piety SFR × 4 hits) at 51 stacks. Builds toward passive proc."
+      }
+    },
+    "Druid": {
+      "vaivora_name": "Soul of Forest",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Druid Skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Soul of Forest",
+          "trigger": "Casting Carnivory",
+          "effects": [
+            "Activate [Soul of Forest] when casting Carnivory",
+            "Lasts for 5 seconds and damages enemies nearby by 0.5 seconds",
+            "Damage = skill factor of [Carnivory]"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Final Damage of Human Form increases by 10.5% additionally. Final Damage of Wolf's Spirit increases by 3.5% additionally."
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Carnivory triggers 5s AoE pulse at Carnivory SFR every 0.5s. Persistent damage zone."
+      }
+    },
+    "Monk": {
+      "vaivora_name": "Thunder Kick",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Monk Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Thunder Kick",
+          "trigger": "3 seconds after equipping / Attacking with Monk skills",
+          "effects": [
+            "Activate [Thunder Kick] 3 seconds after equipping",
+            "Attack enemy within 100 range when attacking with Monk skills",
+            "Cooldown 5 seconds",
+            "CD decreases by 2 seconds during [Golden Bell Shield] buff",
+            "Skill factor 20% of current level Double Punch",
+            "Number of Targets: 15, Consecutive Hits: 2",
+            "[Thunder Kick: Extreme] gives double damage vs single target"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Activate [Palm Strike: Fist] at every strike cycle when casting Double Punch. Skill Factor: 27.5% of current level Palm Strike."
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Passive Thunder Kick fires every 5s during Monk attacks. Level 4 adds Palm Strike procs on Double Punch. Both fill gaps between main skills."
+      }
+    }
+  }
+}

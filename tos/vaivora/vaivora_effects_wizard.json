@@ -464,6 +464,31 @@
         "pattern": "linear_proficiency",
         "reasoning": "Doubles hits on all Rank 1 Taoist skills + activates permanent awakening during cooldown windows. Level 4 adds conditional +100% FD to paired skills. Massive amplification of existing kit."
       }
+    },
+    "Sorcerer": {
+      "vaivora_name": "Wicked Desire",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Sorcerer Skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Wicked Desire",
+          "trigger": "After using Evocation",
+          "effects": [
+            "The devil of the secondary card remains after using Evocation",
+            "Summon skills automatically used, Unmountable",
+            "Duration: 10 seconds"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Evocation Cooldown -10 seconds"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Secondary card devil persists after Evocation for 10s, auto-using summon skills. Adds autonomous pet damage during cooldowns."
+      }
     }
   }
 }

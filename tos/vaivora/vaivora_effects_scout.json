@@ -1,0 +1,422 @@
+{
+  "system": "vaivora_effects",
+  "tree": "scout",
+  "game": "Tree of Savior",
+  "patch": "Episode 14+",
+  "source": "User Notion database",
+  "description": "Vaivora weapon effect data for Scout tree classes.",
+  "design_patterns": {
+    "linear_proficiency": "Buffs existing rotation without changing shape.",
+    "gap_filling": "Adds damage sources during CD gaps or creates passive damage."
+  },
+  "entries": {
+    "Hakkapeliter": {
+      "vaivora_name": "Carbine",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Hakkapeliter Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Carbine",
+          "trigger": "Passive",
+          "effects": [
+            "Ankle Shot Skill Damage +50%",
+            "Trooper Charge Skill Damage +50%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Number of Infinite Assault hit x2 against Boss monster. Channeling duration +1s when defeating target during Infinite Assault (Max 10 seconds)."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "+50% skill damage on two core skills. Boss hit doubling at Level 4."
+      }
+    },
+    "Ardito": {
+      "vaivora_name": "Carpet Bombing",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Granata Skill Level +3"
+        ],
+        "passive_bonuses": [
+          "Granata AoE Attack Ratio +10"
+        ],
+        "proc_mechanic": {
+          "name": "Carpet Bombing",
+          "trigger": "Casting Taglio",
+          "effects": [
+            "Throw grenades into nearby area every 0.25 seconds",
+            "Damaging 50% of Granata's current level skill factor",
+            "Carpet Bombing damage halved to Boss and Character"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Taglio Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Taglio triggers passive grenade barrage at Granata SFR. Area damage during other casts."
+      }
+    },
+    "Corsair": {
+      "vaivora_name": "Critical Edge",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Critical Edge",
+          "trigger": "Passive",
+          "effects": [
+            "Minimum Hexen Dropper Critical Rate +40%",
+            "Hexen Dropper Final Damage at Critical Hit +60%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Keel Hauling number of hits +4"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Guaranteed crit + crit FD bonus on Hexen Dropper. Direct burst amplification."
+      }
+    },
+    "Bullet Marker": {
+      "vaivora_name": "Cryolite Bullet",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "R.I.P Skill Level +3"
+        ],
+        "passive_bonuses": [
+          "Decreases cooldown of R.I.P by 10 seconds",
+          "Decreases cooldown of Mozambique Drill by 10 seconds"
+        ],
+        "proc_mechanic": {
+          "name": "Cryolite Bullet",
+          "trigger": "Passive",
+          "effects": [
+            "Applies Freeze Bullet to R.I.P"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "1 stack of [Overheating] buff changes to 1 stack of [Outrage] buff when Outrage is cast (Maximum stack of Outrage buff: 30)"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "CD reduction on two core skills + Freeze application. Tightens rotation."
+      }
+    },
+    "Rangda": {
+      "vaivora_name": "Cursed Dagger",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Luka skill level +3",
+          "Keletihan skill level +2"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Cursed Dagger",
+          "trigger": "When Luka is casted",
+          "effects": [
+            "Applies 4 stack of Keletihan debuff in current level",
+            "Applies [Cursed Dagger] debuff",
+            "Cursed Dagger gives equal damage with Luka of current level",
+            "Duration of Cursed Dagger: 10 seconds"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Kutukan Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Luka auto-applies Keletihan stacks + Cursed Dagger DoT (Luka damage for 10s). Passive damage after burst."
+      }
+    },
+    "Clown": {
+      "vaivora_name": "Ecliptic Blades",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Clown skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Ecliptic Blades",
+          "trigger": "Climax is cast",
+          "effects": [
+            "Throw equal number of daggers as [Pocket Knife] to the front by Climax",
+            "Skill Factor: 25% of Climax",
+            "Number of consecutive hits = number of daggers thrown (Max 10)",
+            "Maximum Target: 10"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Fatal Roulette Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Climax gains bonus dagger throw scaling with Pocket Knife count. Burst amplification."
+      }
+    },
+    "Enchanter": {
+      "vaivora_name": "Empowering",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Enchanter skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Empowering",
+          "trigger": "Passive (Over-Reinforce)",
+          "effects": [
+            "Increases Physical, Magic ATK of Over-Reinforce's party members additionally +2.5%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Enchant Aura attack cycle and SP consume cycle decreases by half"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Party ATK buff increase + Enchant Aura efficiency. Support amplification."
+      }
+    },
+    "Assassin": {
+      "vaivora_name": "Gasp Up",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Assassin skill level +1",
+          "Piercing Heart skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Gasp Up",
+          "trigger": "Piercing Heart accurate hit",
+          "effects": [
+            "Apply [Gasp Up] debuff for 30 seconds",
+            "Debuff target creates [Covert] every 1 second (visible only to caster)",
+            "Increases buff stack by 1 every time caster steps the [Covert]",
+            "Stealth, Movement Speed during buff +10, max 5 stacks",
+            "Removes debuff and attacks 5 hits with pierce property when striking [Gasp Up] target with Assassin skill",
+            "Increases number of [Gasp Up] hits = [Covert] stack count",
+            "Skill factor is 46.5% of Piercing Heart",
+            "Gasp Up debuff Cooldown: 30 seconds",
+            "Only applies to boss and character"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Annihilation Cooldown decreases by 15 seconds"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Creates stealth-and-stalk minigame that builds stacks for burst. Fills downtime between Assassin CDs with positioning gameplay + delayed burst."
+      }
+    },
+    "Jaguar": {
+      "vaivora_name": "Law of the Jungle",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Jaguar Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Law of the Jungle",
+          "trigger": "Using Jaguar attack skills",
+          "effects": [
+            "Each attack skill increases duration of Jaguar Stance by 2.5 seconds",
+            "The increasing value of Jaguar Stance Final Damage is elevated"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Receives [Aweslaught] effect for 10 seconds when using [Jaguar Stance]. * Aweslaught: All Jaguar skill attack becomes critical. * Player becomes [Stealth] while [Aweslaught] persists, removed after first attack. * [Aweslaught] Stealth status is not removed when receiving attacks."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Extends Jaguar Stance duration per attack + guaranteed crit burst window at Level 4."
+      }
+    },
+    "Rogue": {
+      "vaivora_name": "Phantom Blade",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Rogue Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Phantom Blade",
+          "trigger": "After Knife Throw",
+          "effects": [
+            "Change 3 basic attacks after Knife Throw to Throw Dagger (10 seconds)",
+            "Skill factor of Throw Dagger is 60% of Knife Throw at current level",
+            "Damage for 3 seconds after throwing third dagger +30%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Backstab Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Converts basic attacks into Throw Daggers after Knife Throw. Fills basic attack gaps with skill-level damage."
+      }
+    },
+    "Thaumaturge": {
+      "vaivora_name": "Rapid Growth",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Rapid Growth",
+          "trigger": "Target under Swell Body buff",
+          "effects": [
+            "Apply [Growth] buff to target for 12 seconds",
+            "[Growth]: Final Damage +10%",
+            "Size that Swells by Swell Body doubles"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Swell Hands ATK increases additionally +2.5%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "+10% FD buff application via Swell Body. Party support amplification."
+      }
+    },
+    "Schwarzer Reiter": {
+      "vaivora_name": "Renovate Trigger",
+      "level_1_effect": {
+        "skill_level_bonuses": [],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Renovate Trigger",
+          "trigger": "During Limacon buff",
+          "effects": [
+            "Basic Pistol attack factor during Limacon buff +200%",
+            "Basic Pistol attack speed during Limacon buff +40%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Basic Attack Speed of Pistol during Limacon buff changed to +60%. Maximum Serial Bullet buff stacks +30."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "+200% basic attack factor during Limacon. Turns basic attacks into main damage source."
+      }
+    },
+    "Outlaw": {
+      "vaivora_name": "Sabotage",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Outlaw skill level +1"
+        ],
+        "passive_bonuses": [
+          "Damage received increases after casting Rampage, Removes Cannot Evade Damage Received effect"
+        ],
+        "proc_mechanic": {
+          "name": "Sabotage",
+          "trigger": "Casting Rampage",
+          "effects": [
+            "Additional attack activates per attack when casting Rampage",
+            "Skill factor = current level Rampage",
+            "Number of additional targets: 18"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Blindfire Final Damage +100%. Mangle Final damage +100%."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Rampage gains AoE splash (18 targets) per hit. Direct AoE amplification."
+      }
+    },
+    "Shinobi": {
+      "vaivora_name": "Shadow Clone",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Shinobi skills except Bunshin no Jutsu +1"
+        ],
+        "passive_bonuses": [
+          "Summon 1 shadow clone when equipped with 1+ Bunshin no Jutsu skill level"
+        ],
+        "proc_mechanic": {
+          "name": "Shadow Clone",
+          "trigger": "Equipping (passive)",
+          "effects": [
+            "Duration: Infinite",
+            "Cannot inflict basic attack, copies Shinobi skill of the original",
+            "Does not consume HP/SP",
+            "Stackable with Clone summoned by Bunshin no Jutsu",
+            "Shadow clone copies cloaking"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Kunai Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Permanent shadow clone that copies all Shinobi skills without HP/SP cost. Autonomous damage multiplier."
+      }
+    },
+    "Sheriff": {
+      "vaivora_name": "Speedloader",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Sheriff skill level +1"
+        ],
+        "passive_bonuses": [
+          "Decreases Cooldown of Westraid by 25 seconds"
+        ],
+        "proc_mechanic": {
+          "name": "Speedloader",
+          "trigger": "Passive (every 5 seconds)",
+          "effects": [
+            "Stacks 3 [Sheriff: Reload] buff per every 5 seconds when equipped",
+            "When 10 [Sheriff: Reload] is stacked and Westraid is casted, consume all stacks and reset Cooldown of [Aiming Shot]"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Fanning Final damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Passive reload stacking → Aiming Shot CD reset. Increases burst frequency."
+      }
+    },
+    "Linker": {
+      "vaivora_name": "Superstring",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Linker Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Superstring",
+          "trigger": "Joint Penalty calculation",
+          "effects": [
+            "Apply number of targets linked as follows for Joint Penalty shared damage:",
+            "(Number of target+1) / 2",
+            "(Minimum 2 targets)"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Electric Shock Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Modifies Joint Penalty target formula for better shared damage scaling. Support utility."
+      }
+    }
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "system": "vaivora_effects",
+  "tree": "archer",
+  "game": "Tree of Savior",
+  "patch": "Episode 14+",
+  "source": "User Notion database",
+  "description": "Vaivora weapon effect data for Archer tree classes.",
+  "design_patterns": {
+    "linear_proficiency": "Buffs existing rotation without changing shape.",
+    "gap_filling": "Adds damage sources during CD gaps or creates passive damage."
+  },
+  "entries": {
+    "Cannoneer": {
+      "vaivora_name": "Air Burst",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Cannoneer Skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Air Burst",
+          "trigger": "Casting Smoke Grenade",
+          "effects": [
+            "Damages within Smoke Grenade by activating [Air Burst] per 1 second",
+            "Skill factor proportional to Cannon Shot",
+            "AoE Attack Ratio: 20",
+            "Struck enemy gets [Slow] for 2 seconds"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Sweeping Cannon Cooldown decreases by 20 seconds"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Smoke Grenade passively pulses Cannon Shot-level damage per second. Persistent AoE."
+      }
+    },
+    "Musketeer": {
+      "vaivora_name": "Armor-Piercing Shell",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Musketeer Skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Armor-Piercing Shell",
+          "trigger": "All Musketeer skills and normal attacks",
+          "effects": [
+            "Ignores enemy's Defense by 15%",
+            "When enemy is character, ignores Defense by 20%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Snipe Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Flat DEF penetration on all attacks. Directly amplifies effective ATK."
+      }
+    },
+    "Matross": {
+      "vaivora_name": "Centerfire",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Explosion skill level +3"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Centerfire",
+          "trigger": "Casting Explosion",
+          "effects": [
+            "Additionally fires 1 time to the target",
+            "Skill factor is 30% of Explosion at current level, hits: 5",
+            "Additionally casted Explosion damages only 1 target"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Artillery Call Cooldown decreases by 20 seconds"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Extra 5-hit follow-up on Explosion at 30% SFR."
+      }
+    },
+    "Quarrel Shooter": {
+      "vaivora_name": "Cluster Bomb",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Quarrel Shooter skill level +1"
+        ],
+        "passive_bonuses": [
+          "Learn [Cluster Shot] when equipped"
+        ],
+        "proc_mechanic": {
+          "name": "Cluster Shot",
+          "trigger": "New skill (usable during Kneeling Shot)",
+          "effects": [
+            "Fire exploding bolt to damage",
+            "Skill factor = Rapid Fire at current level, 2 consecutive hits",
+            "Cooldown: 15 seconds",
+            "Maximum targets: 30",
+            "Can be used during Kneeling Shot"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Block and Shoot Fire Speed doubles"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Grants entirely new AoE skill usable during Kneeling Shot. Fills gaps with a new button."
+      }
+    },
+    "Hunter": {
+      "vaivora_name": "Companion Lover",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Hunter Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Beast Master",
+          "trigger": "Companion falls",
+          "effects": [
+            "Maximum HP of companion +25%",
+            "When companion becomes incapable, instantly recovers 50% HP and returns to battle (CD: 40s)"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Hunter Attack Skill Final Damage +30%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Pet survivability + flat FD buff."
+      }
+    },
+    "Arbalester": {
+      "vaivora_name": "Double Marking",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Every Arbalester skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Double Marking",
+          "trigger": "Passive",
+          "effects": [
+            "Chance to fire Homing Arrow doubles"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Dead Zone Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Doubles Homing Arrow proc rate."
+      }
+    },
+    "Falconer": {
+      "vaivora_name": "Hawking",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Pheasant Skill Level +2",
+          "Sonic Strike Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Hawking",
+          "trigger": "Using Pheasant",
+          "effects": [
+            "5 Hawk shoots down and attacks the designated point",
+            "Attacks twice per Hawk for 5 seconds",
+            "Skill Factor 15% of current Pheasant, Maximum 10 consecutive hits",
+            "Falconer: Hawk Eye Attribute effect applied",
+            "Damage vs Beast enemy by additional Hawk +50%"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Tomahawk Final Damage +30%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "5 autonomous Hawks attack for 5 seconds after Pheasant. Persistent damage."
+      }
+    },
+    "Hwarang": {
+      "vaivora_name": "Jusalnegi",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Hwarang skill level +1"
+        ],
+        "passive_bonuses": [
+          "Changes Unbending Spirit buff to max 4 stacks"
+        ],
+        "proc_mechanic": {
+          "name": "Jusalnegi",
+          "trigger": "Casting Pyeonjeon",
+          "effects": [
+            "Fires 2 continuous time when casting Pyeonjeon"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "White Horn Bow FD +50%, Black Horn Bow FD +50%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Double Pyeonjeon output + FD buffs."
+      }
+    },
+    "Arquebusier": {
+      "vaivora_name": "Lever Action",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Arquebusier skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Lever Action",
+          "trigger": "Passive",
+          "effects": [
+            "Precision Fire Firing Speed doubles"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Arquebus Barrage Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Doubles fire speed + FD buff."
+      }
+    },
+    "Sapper": {
+      "vaivora_name": "Obliterate",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Sapper Skill Level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Obliterate",
+          "trigger": "Blowing up Detonate Traps",
+          "effects": [
+            "Explosive Residue left at spot, damages enemies for 10 seconds",
+            "Skill factor/s is 10% of Detonate Trap SFR",
+            "Number of Explosive Residue target: 10"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Sapper Skill Final Damage +30%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Persistent 10s damage zone after trap detonation."
+      }
+    },
+    "Mergen": {
+      "vaivora_name": "Orbital Arrow",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Mergen Skill Level +1"
+        ],
+        "passive_bonuses": [
+          "Arrow Sprinkle Cooldown -20 seconds"
+        ],
+        "proc_mechanic": {
+          "name": "Orbital Arrow",
+          "trigger": "Arrow Sprinkle is cast",
+          "effects": [
+            "Additional damage to 20 enemies by descending gigantic arrow every 1 second",
+            "Skill factor = 1 hit of Arrow Sprinkle",
+            "Duration = fired Arrow Sprinkle duration"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Triple Arrow Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Persistent descending arrow every 1s for full Arrow Sprinkle duration."
+      }
+    },
+    "Fletcher": {
+      "vaivora_name": "Reinforced Bowstring",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Fletcher skill level +1"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Reinforced Bowstring",
+          "trigger": "Applying buffs",
+          "effects": [
+            "Apply as 2 stacks when applying Bodkin Point buff",
+            "Apply as 2 stacks when applying Barbed Arrow buff"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Divine Machine Arrow FD +100%. Both charges/overheat replenished at same time."
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Double buff stacking + charge replenishment."
+      }
+    },
+    "Wugushi": {
+      "vaivora_name": "Shadowless Poison",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "Wugong Gu Skill Level +3",
+          "Golden Frog Skill Level +2"
+        ],
+        "passive_bonuses": [],
+        "proc_mechanic": {
+          "name": "Shadowless Poison",
+          "trigger": "Using Golden Frog",
+          "effects": [
+            "Poison Rain drops around and damages enemy",
+            "Poison Rain judged as same skill as Golden Frog"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Poison Pot Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "gap_filling",
+        "reasoning": "Golden Frog triggers passive Poison Rain AoE."
+      }
+    },
+    "Ranger": {
+      "vaivora_name": "Tempest",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Ranger skill level +1"
+        ],
+        "passive_bonuses": [
+          "Decreases Double Take CD by 5 seconds"
+        ],
+        "proc_mechanic": {
+          "name": "Tempest",
+          "trigger": "Casting Double Take",
+          "effects": [
+            "Twister created within 70 range of target",
+            "Pops non-boss monsters into air for 1 second",
+            "Skill factor = Double Take at current level",
+            "Targets: 10"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Blazing Arrow Final Damage +100%"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "Appends AoE Twister to Double Take."
+      }
+    },
+    "Tiger Hunter": {
+      "vaivora_name": "Triple Step Single Shot",
+      "level_1_effect": {
+        "skill_level_bonuses": [
+          "All Tiger Hunter Skill Level +1"
+        ],
+        "passive_bonuses": [
+          "AoE Attack Ratio of Piercing Shot +10",
+          "Piercing Shot Range +100%",
+          "CD of Piercing Shot -10 seconds"
+        ],
+        "proc_mechanic": {
+          "name": "Triple Steps Single Shot",
+          "trigger": "Passive",
+          "effects": [
+            "Rapid Shot damages max 10 enemies nearby target"
+          ]
+        }
+      },
+      "level_4_effect": {
+        "description": "Rapid Shot Cooldown -10 seconds"
+      },
+      "design_analysis": {
+        "pattern": "linear_proficiency",
+        "reasoning": "AoE expansion + CD reduction on core skills."
+      }
+    }
+  }
+}

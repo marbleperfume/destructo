@@ -1,0 +1,69 @@
+{
+  "system": "vaivora_effects",
+  "tree": "common",
+  "game": "Tree of Savior",
+  "patch": "Episode 14+",
+  "source": "User Notion database",
+  "description": "Common Vaivora weapons not restricted to a specific class. Can equip multiple copies.",
+  "entries": {
+    "Bloody Fight": {
+      "vaivora_name": "Bloody Fight",
+      "class_restriction": null,
+      "level_1_effect": {
+        "description": "Adds stats catered to fighting medium-size enemies. Greatly increases accuracy."
+      },
+      "level_4_effect": null,
+      "notes": "You can equip as many copies of this vaivora as you want at the same time."
+    },
+    "Concentrated Defense": {
+      "vaivora_name": "Concentrated Defense",
+      "class_restriction": null,
+      "level_1_effect": {
+        "passive_bonuses": [
+          "Final Block Rate +2%"
+        ],
+        "proc_mechanic": {
+          "name": "Concentrated Defence",
+          "trigger": "Equipping shield in main or sub slot",
+          "effects": [
+            "Apply [Concentrated Defence] buff to party members within 150 range",
+            "Decreases damage received from [Magic Circle], [Continual AoE] attacks by 5% * [number of shield equipped]",
+            "Decreases damage received from monster by 5% * [number of shield equipped]",
+            "Concentrated Defence effect doubles for 3 seconds when succeeding in Block"
+          ]
+        }
+      },
+      "level_4_effect": null,
+      "notes": ""
+    },
+    "Coordination": {
+      "vaivora_name": "Coordination",
+      "class_restriction": null,
+      "level_1_effect": {
+        "description": "Adds stats catered to fighting all monster race-types. Greatly increases accuracy."
+      },
+      "level_4_effect": null,
+      "notes": "You can equip as many copies of this vaivora as you want at the same time."
+    },
+    "Echo": {
+      "vaivora_name": "Echo",
+      "class_restriction": null,
+      "level_1_effect": {
+        "description": "10% final increase in additional damage on attack."
+      },
+      "level_4_effect": {
+        "description": "20% final increase in additional damage on attack."
+      },
+      "notes": "Despite being common, this vision counts as a class-specific one."
+    },
+    "Galimive Weapon": {
+      "vaivora_name": "Galimive Weapon",
+      "class_restriction": null,
+      "level_1_effect": {
+        "description": "Adds Stats."
+      },
+      "level_4_effect": null,
+      "notes": "This vision is pre-unlocked in your Equipment Storage. You can equip as many copies as you want at the same time."
+    }
+  }
+}
