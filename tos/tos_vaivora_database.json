@@ -32,14 +32,14 @@
   "impact_on_atk_calculations": {
     "direct_multipliers": "Final Damage bonuses (30-100%) are MULTIPLICATIVE with all other modifiers. Applied after Enhance/Arts/Commission chain.",
     "effective_sfr_boost": "Skill level +1-3 increases SFR array index, giving ~15-30% more base SFR per added level.",
-    "proc_damage": "Random procs during dead time: 1800-3600% SFR \u00c3\u2014 1-4 hits, ~15% chance/sec. Fills rotation gaps.",
+    "proc_damage": "Random procs during dead time: 1800-3600% SFR Ã— 1-4 hits, ~15% chance/sec. Fills rotation gaps.",
     "swap_multiplier": "Auto-swap between weapon sets grants +40% damage to burst skills during swap window.",
     "total_effective_multiplier": "Full Vaivora investment (lv3 + swap system) typically adds x1.8-x2.5 to a build's effective DPS.",
     "modeling_approach": "Template system models as: vaivora_investment = none | mid (lv1-2, no swap) | max (lv3, full swap). Applied as post-rotation multiplier to affected skills only."
   },
   "bonus_damage_system": {
-    "formula": "Bonus% = (Offense_Stat - Defense_Stat) / (Defender_Level \u00c3\u2014 30) \u00c3\u2014 100",
-    "pve_simplified": "Bonus% = Attack_vs_X / (Monster_Level \u00c3\u2014 30) \u00c3\u2014 100",
+    "formula": "Bonus% = (Offense_Stat - Defense_Stat) / (Defender_Level Ã— 30) Ã— 100",
+    "pve_simplified": "Bonus% = Attack_vs_X / (Monster_Level Ã— 30) Ã— 100",
     "example": "At lv500 monster: 15,000 'Attack vs. Medium' = +100% damage (doubles it)",
     "properties": [
       "Flat bonus added AFTER main formula",
@@ -152,71 +152,7 @@
       {
         "class": "Murmillo",
         "vaivora_weapon": "Arena",
-        "role": "Damage Dealer",
-        "vaivora_effects": {
-          "passive_bonuses": [
-            {
-              "type": "skill_level",
-              "target": "All Murmillo skills (except Cassis Crista and Sprint)",
-              "value": 1
-            }
-          ],
-          "proc_mechanic": {
-            "name": "Arena",
-            "trigger": "Casting Frenzied Burst",
-            "effect": "[Arena] is created around the character",
-            "duration": "Half of Frenzied Burst cooldown",
-            "arena_effects": [
-              {
-                "effect": "Final damage of Murmillo attack skills +30% in Arena"
-              },
-              {
-                "effect": "Enemy outside Arena inflicted with [Fugitivo] debuff for 10s",
-                "note": "Debuff only applies to enemy character, not caster or monster"
-              }
-            ],
-            "fugitivo_debuff": {
-              "movement_speed": -10,
-              "final_damage_at_attack": -10,
-              "unit": "%",
-              "evasion_and_block": -50,
-              "unit_2": "%"
-            }
-          },
-          "additional_effects": [
-            {
-              "type": "headbutt_proc",
-              "trigger": "Enemy is hit by Headbutt",
-              "effect": "2 Apparitions summoned that cast Butterfly to the enemy",
-              "cooldown": 30,
-              "restriction": "Doesn't cast when [Headbutt: Emperor's Bane] attribute is activated"
-            },
-            {
-              "type": "cassis_crista_penalty_reduction",
-              "original_penalty": {
-                "movement_speed": -5,
-                "evasion": -25,
-                "unit": "%"
-              },
-              "reduced_penalty": {
-                "movement_speed": -3,
-                "evasion": -12.5,
-                "unit": "%"
-              }
-            }
-          ],
-          "unknown_values": [
-            {
-              "skill": "Butterfly",
-              "missing": "skill_factor",
-              "note": "Proc from Apparitions - SFR not listed in Vaivora description. Check patch notes for Butterfly damage value."
-            }
-          ],
-          "design_analysis": {
-            "pattern": "linear_proficiency",
-            "reasoning": "Arena creates a zone that buffs Murmillo's existing rotation by +30% final damage. The rotation doesn't change shape \u2014 you still use the same skills, they just hit harder inside the Arena. Headbutt Apparitions add supplementary damage but the core rotation is unchanged. The Fugitivo debuff is PvP-oriented (reduces enemy player stats)."
-          }
-        }
+        "role": "Damage Dealer"
       },
       {
         "class": "Nak Muay",
@@ -243,10 +179,18 @@
       },
       {
         "class": "Templar",
-        "vaivora_weapon": "Party Buffs",
+        "vaivora_weapon": "Assemble",
         "role": "Utility",
         "combat_specialties": [
           "Utility - Party"
+        ]
+      },
+      {
+        "class": "Shenji",
+        "vaivora_weapon": "The Dragon and The Tiger",
+        "role": "Damage Dealer",
+        "combat_specialties": [
+          "Stance Switching"
         ]
       }
     ],
@@ -413,7 +357,7 @@
         "description": "Shadowmancers use dark property magic to deal great amounts of damage to a single target and protect themselves from harm",
         "build_url": "https://itos.tavernofsoul.com/planner/?d={2001}{2019}af11a35",
         "notes": [
-          "It\u00e2\u20ac\u2122s possible to remove points from Conjuration to put them in Hallucination/Shadow Pool"
+          "Itâ€™s possible to remove points from Conjuration to put them in Hallucination/Shadow Pool"
         ]
       },
       {
@@ -460,73 +404,7 @@
         "notes": [
           "using 7 skill potions is extremely recommended",
           "if not possible, remove points from Pole of Agony or Dark Theurge"
-        ],
-        "vaivora_effects": {
-          "passive_bonuses": [
-            {
-              "type": "skill_level",
-              "target": "All Warlock skills",
-              "value": 1
-            },
-            {
-              "type": "skill_level",
-              "target": "Invocation",
-              "value": 1
-            }
-          ],
-          "proc_mechanic": {
-            "name": "Demonische",
-            "trigger": "Evil spirit created by Invocation damages an enemy",
-            "stack_per_trigger": 1,
-            "stack_per_trigger_high_level_spirit": 2,
-            "max_stacks": 10,
-            "on_max_stacks": {
-              "effect": "Auto-fires Dark property magic damage",
-              "range": 100,
-              "target_selection_range": 150,
-              "sfr_source": "Invocation",
-              "sfr_multiplier": 2.0,
-              "hits": 5,
-              "max_targets": 10,
-              "property": "Dark"
-            },
-            "additional_on_proc": [
-              "Ghastly Trail damage increases",
-              "Darkness Fear attribute applied",
-              "Evil Spirit: Darkness attribute applied"
-            ],
-            "restrictions": [
-              "Does not attack Infernal Shadow's shadow",
-              "[Arts] Evil: Expand changes hits to 1 when activated"
-            ]
-          },
-          "additional_effects": [
-            {
-              "type": "final_damage",
-              "target": "Demon Scratch",
-              "value": 100,
-              "unit": "%"
-            },
-            {
-              "type": "max_spirits",
-              "value": 5,
-              "note": "Maximum Evil Spirits increased by 5 (to 15 total)"
-            },
-            {
-              "type": "spirit_generation",
-              "trigger": "Demon Scratch hit",
-              "chance": 50,
-              "unit": "%",
-              "effect": "Creates Invocation Evil Spirit"
-            }
-          ],
-          "removal_note": "Created evil spirit and Invocation buff will be removed when removing the item",
-          "design_analysis": {
-            "pattern": "gap_filling",
-            "reasoning": "Demonische fires at 10 stacks (accumulated from Invocation spirits hitting). This provides damage during periods when Warlock's main skills are on CD. Additionally, Demon Scratch generating spirits at 50% addresses the slow spirit accumulation rate from Invocation alone. Without this Vaivora, Warlock's spirit generation is too slow for the Mastema burst cycle to fire frequently enough at high ATK.",
-            "bottleneck_addressed": "Spirit accumulation rate from Invocation is the throttle on Mastema burst frequency. Demonische provides both passive DPS (auto-fire at 10 stacks) and accelerated spirit generation (Demon Scratch 50% chance)."
-          }
-        }
+        ]
       }
     ],
     "archer": [
@@ -560,7 +438,7 @@
         "vaivora_weapon": "Companion Lover",
         "role": "Damage Dealer",
         "notes": [
-          "Reinforced Bowstring\u00e2\u20ac\u2039"
+          "Reinforced Bowstringâ€‹"
         ]
       },
       {
@@ -598,9 +476,9 @@
         "class": "Tiger Hunter",
         "vaivora_weapon": "Triple Step Single Shot",
         "role": "Damage Dealer",
-        "description": "Armor-Piercing Shell\u00e2\u20ac\u2039",
+        "description": "Armor-Piercing Shellâ€‹",
         "notes": [
-          "Triple Step Single Shot\u00e2\u20ac\u2039"
+          "Triple Step Single Shotâ€‹"
         ]
       },
       {
@@ -664,7 +542,7 @@
         "combat_specialties": [
           "Skill Type - Channeling"
         ],
-        "description": "Protecting Grace\u00e2\u20ac\u2039"
+        "description": "Protecting Graceâ€‹"
       },
       {
         "class": "Kabbalist",
@@ -688,7 +566,7 @@
         "class": "Lama",
         "vaivora_weapon": "Principle of Emptiness",
         "role": "Damage Dealer",
-        "description": "Ecliptic Blades\u00e2\u20ac\u2039",
+        "description": "Ecliptic Bladesâ€‹",
         "notes": [
           "Principle of Emptiness"
         ]
@@ -792,8 +670,8 @@
         "role": "Damage Dealer",
         "description": "Schwarzer Reiter",
         "notes": [
-          "Renovate Trigger\u00e2\u20ac\u2039",
-          "Cryolite Bullet\u00e2\u20ac\u2039"
+          "Renovate Triggerâ€‹",
+          "Cryolite Bulletâ€‹"
         ]
       },
       {
